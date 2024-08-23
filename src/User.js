@@ -354,7 +354,7 @@ export default function PermanentDrawerLeft() {
                       </div>
                       <div className='justcenter flex aligncenter column'>
                         <Typography>Connected Address</Typography>
-                        <Typography>{user?.connectedaddress.slice(0, 6)}...{user?.connectedaddress.slice(-4)}</Typography>
+                        <Typography>{user?.connectedaddress ? user?.connectedaddress.slice(0, 6) : "loading"}</Typography>
                       </div>
                       <div className='justcenter flex aligncenter column'>
                         <Typography>apicount</Typography>
@@ -404,6 +404,10 @@ export default function PermanentDrawerLeft() {
                         </Box>
                       </Modal>*/}
                     </CardContent>
+                    <CardActions>
+                      <Button variant="contained" onClick={() => deleteuser(user?.shop)}>Delete</Button>
+                      <Button variant="contained" onClick={() => blockuser(user?.shop)}>Block</Button>
+                    </CardActions>
                   </Card>
             ))}
           </div>
