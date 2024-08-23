@@ -92,7 +92,7 @@ export default function PermanentDrawerLeft() {
     urlencoded.append("shop", shop)
     urlencoded.append("email", email)
     urlencoded.append("connectedaddress", connectedaddress)
-      return fetch('http://localhost:5000/user/create', {
+      return fetch('https://novapay.live/asi/user/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -107,7 +107,7 @@ export default function PermanentDrawerLeft() {
     data: getusers,
     error,
     isValidating,
-  } = useSWR('http://localhost:5000/get/allusers', fetcher, { refreshInterval: 36000000 });
+  } = useSWR('https://novapay.live/asi/get/allusers', fetcher, { refreshInterval: 36000000 });
   console.log(getusers?.data[0], 'countries')
   const usermap = getusers?.data
 
@@ -119,7 +119,7 @@ export default function PermanentDrawerLeft() {
   async function deleteuser(shop) {
     const urlencoded = new URLSearchParams()
     urlencoded.append("shop", shop)
-      return fetch('http://localhost:5000/user/delete', {
+      return fetch('https://novapay.live/asi/user/delete', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -135,7 +135,7 @@ export default function PermanentDrawerLeft() {
     urlencoded.append("shop", shop)
     urlencoded.append("connectedaddress", connectedaddress)
     urlencoded.append("email", email)
-      return fetch('http://localhost:5000/user/edit', {
+      return fetch('https://novapay.live/asi/user/edit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -149,7 +149,7 @@ export default function PermanentDrawerLeft() {
   async function blockuser(shop) {
     const urlencoded = new URLSearchParams()
     urlencoded.append("shop", shop)
-      return fetch('http://localhost:5000/user/block', {
+      return fetch('https://novapay.live/asi/user/block', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -164,7 +164,7 @@ export default function PermanentDrawerLeft() {
     const urlencoded = new URLSearchParams()
     urlencoded.append("shop", shop)
     urlencoded.append("role", role)
-      return fetch('http://localhost:5000/user/addrole', {
+      return fetch('https://novapay.live/asi/user/addrole', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'

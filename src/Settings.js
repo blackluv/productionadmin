@@ -85,7 +85,7 @@ export default function PermanentDrawerLeft() {
     const urlencoded = new URLSearchParams()
     urlencoded.append("username", username)
     urlencoded.append("password", password)
-      return fetch('http://localhost:3000/create/admin', {
+      return fetch('https://novapay.live/asi/create/admin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'

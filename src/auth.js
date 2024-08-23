@@ -18,7 +18,7 @@ async function loginUser(credentials) {
   const urlencoded = new URLSearchParams()
   urlencoded.append("username", credentials.username)
   urlencoded.append("password", credentials.password)
-    return fetch('http://localhost:3000/login', {
+    return fetch('https://novapay.live/asi/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'

@@ -107,7 +107,7 @@ export default function PermanentDrawerLeft() {
     data: totalusers,
     error,
     isValidating,
-  } = useSWR('http://localhost:5000/get/totalusers', fetcher, { refreshInterval: 36000000 });
+  } = useSWR('https://novapay.live/asi/get/totalusers', fetcher, { refreshInterval: 36000000 });
 
   console.log(totalusers, 'countries')
   const chit = totalusers?.data
@@ -116,7 +116,7 @@ export default function PermanentDrawerLeft() {
     data: totalusers1,
     error1,
     isValidating1,
-  } = useSWR('http://localhost:5000/get/invoicecount', fetcher, { refreshInterval: 36000000 });
+  } = useSWR('https://novapay.live/asi/get/invoicecount', fetcher, { refreshInterval: 36000000 });
 
   console.log(totalusers1, 'countries')
   const chit1 = totalusers1?.data
