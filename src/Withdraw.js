@@ -313,6 +313,9 @@ export default function PermanentDrawerLeft() {
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       <Typography>status</Typography>
                   </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>action</Typography>
+                  </div>
                   </div>
                   <CardContent className='spacearound flex bottom'>
                   <div className='justcenter flex aligncenter column width20 mb2'>
@@ -340,6 +343,7 @@ export default function PermanentDrawerLeft() {
                       {/*<Typography>payouts</Typography>*/}
                       <Typography>{"Completed"}</Typography>
                   </div>
+                  <Button  className='width20' >Action</Button>
               </CardContent>
             </Card>
         </div>
