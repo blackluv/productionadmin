@@ -314,6 +314,33 @@ export default function PermanentDrawerLeft() {
                       <Typography>status</Typography>
                   </div>
                   </div>
+                  <CardContent className='spacearound flex bottom'>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>Shopname</Typography>*/}
+                      <Typography>u2hnx3...bcqp</Typography>
+                  </div>
+                  <Divider />
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>Email</Typography>*/}
+                      <Typography>sujidev</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>Deposits</Typography>*/}
+                      <Typography>0x01FF...E987db</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>Deposits</Typography>*/}
+                      <Typography>{100}</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>payouts</Typography>*/}
+                      <Typography>{"Eth"}</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>payouts</Typography>*/}
+                      <Typography>{"Completed"}</Typography>
+                  </div>
+              </CardContent>
             </Card>
         </div>
         </Box>
