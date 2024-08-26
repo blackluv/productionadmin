@@ -291,7 +291,7 @@ export default function PermanentDrawerLeft() {
         <div class="">
             <div className='mb5 flex width spacebetween'>
             <Typography variant='h4' className=''>Novapay Users</Typography>
-            <Button variant='contained' onClick={handleOpen}>Create User</Button>
+            <Button variant='contained' onClick={handleOpen}>Create Merchnat</Button>
             <Modal
               open={open}
               onClose={handleClose}
@@ -303,7 +303,7 @@ export default function PermanentDrawerLeft() {
                   <CardContent>
                     <form onSubmit={handleSubmit}>
                         <TextField
-                            label="username"
+                            label="Shopname"
                             variant="outlined"
                             fullWidth
                             margin="normal"
