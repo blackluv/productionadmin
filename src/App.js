@@ -12,6 +12,8 @@ import Users from './User'
 import useToken from './useToken';
 import Invoice from './Invoice'
 import Wallet from './Wallet'
+import Transaction from './Transactions'
+import Withdraw from './Withdraw'
 
 
 function App() {
@@ -25,14 +27,15 @@ function App() {
     }
   return (
     <div className="wrapper">
-      <h1>Application</h1>
         <Routes>
             <Route path="/home" element={ <Home/> } />
             <Route path="/" element={ <Home/> } />
             <Route path="/settings" element={ <Settings />} />
             <Route path="/users" element={ <Users />} />
-            <Route path="/invoice" element={ <Invoice />} />
+            <Route path="/deposit" element={ <Invoice />} />
             <Route path="/admin" element={ <Wallet />} />
+            <Route path="/payout" element={ <Withdraw />} />
+            <Route path='/transaction/:id' element={<Transaction />} />
         </Routes>
     </div>
   );

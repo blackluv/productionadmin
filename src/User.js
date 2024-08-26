@@ -259,26 +259,25 @@ export default function PermanentDrawerLeft() {
             </ListItem>
         </List>
         <List>
-            <ListItem key="Invoice" disablePadding>
-              <Link to= "/invoice" className='ti'>
+            <ListItem key="Deposits" disablePadding>
+              <Link to= "/deposit" className='ti'>
               <ListItemButton>
                 <ListItemIcon>
                   <InboxIcon /> 
                 </ListItemIcon>
-                <ListItemText primary="Invoice" />
+                <ListItemText primary="Deposits" />
               </ListItemButton>
               </Link>
             </ListItem>
         </List>
-        <Divider />
         <List>
-            <ListItem key="Settings" disablePadding>
-              <Link to= "/settings" className='ti'>
+            <ListItem key="Payouts" disablePadding>
+              <Link to= "/payout" className='ti'>
               <ListItemButton>
                 <ListItemIcon>
                   <InboxIcon /> 
                 </ListItemIcon>
-                <ListItemText primary="Settings" />
+                <ListItemText primary="Payouts" />
               </ListItemButton>
               </Link>
             </ListItem>
@@ -291,7 +290,7 @@ export default function PermanentDrawerLeft() {
         {/*<Toolbar />*/}
         <div class="">
             <div className='mb5 flex width spacebetween'>
-            <Typography variant='h4' className=''>User List</Typography>
+            <Typography variant='h4' className=''>Novapay Users</Typography>
             <Button variant='contained' onClick={handleOpen}>Create User</Button>
             <Modal
               open={open}
@@ -341,77 +340,78 @@ export default function PermanentDrawerLeft() {
               </Box>
             </Modal>
             </div>
-              {usermap?.map((user) => (
-                  <Card className='width'>
-                    <CardContent className='spacebetween flex'>
-                      <div className='justcenter flex aligncenter column'>
-                        <Typography>Shopname</Typography>
-                        <Typography>{user?.shop}</Typography>
-                      </div>
-                      <div className='justcenter flex aligncenter column'>
-                        <Typography>Email</Typography>
-                        <Typography>{user?.email}</Typography>
-                      </div>
-                      <div className='justcenter flex aligncenter column'>
-                        <Typography>Connected Address</Typography>
-                        <Typography>{user?.connectedaddress ? user?.connectedaddress.slice(0, 6) : "loading"}</Typography>
-                      </div>
-                      <div className='justcenter flex aligncenter column'>
-                        <Typography>apicount</Typography>
-                        <Typography>{user?.count}</Typography>
-                      </div>
-                      <div className='justcenter flex aligncenter column'>
-                        <Typography>UserRole</Typography>
-                        <Typography>{user?.role}</Typography>
-                      </div>
-                      {/*<Button variant="contained" onClick={deleteuser(user?.shop)}>Delete</Button>*/}
-                      {/*<Button variant="contained" onClick={blockuser(user?.shop)}>Block</Button>*/}
-                      {/*<Modal
-                        open={open1}
-                        onClose={handleClose1}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                      >
-                        <Box sx={style}>
-                          <Card className='width'>
-                            <CardContent className='flex column'>
-                              <div className='justcenter flex aligncenter column'>
-                                <Typography>Shopname</Typography>
-                                <Typography>{id?.shop}</Typography>
-                              </div>
-                              <div className='justcenter flex aligncenter column'>
-                                <Typography>Email</Typography>
-                                <Typography>{id?.email}</Typography>
-                              </div>
-                              <div className='justcenter flex aligncenter column'>
-                                <Typography>Connected Address</Typography>
-                                <Typography>{id?.connectedaddress}</Typography>
-                              </div>
-                              <div className='justcenter flex aligncenter column'>
-                                <Typography>apicount</Typography>
-                                <Typography>{id?.count}</Typography>
-                              </div>
-                              <div className='justcenter flex aligncenter column'>
-                                <Typography>UserRole</Typography>
-                                <Typography>{id?.role}</Typography>
-                              </div>
-                            </CardContent>
-                            <CardActions className='width'>
-                            <Button variant="contained" onClick={deleteuser(id?.shop)}>Delete</Button>
-                            <Button variant="contained" onClick={blockuser(id?.shop)}>Block</Button>
-                            </CardActions>
-                          </Card>
-                        </Box>
-                      </Modal>*/}
-                    </CardContent>
-                    <CardActions>
-                      <Button variant="contained" onClick={() => deleteuser(user?.shop)}>Delete</Button>
-                      <Button variant="contained" onClick={() => blockuser(user?.shop)}>Block</Button>
-                    </CardActions>
-                  </Card>
+            <Card className='width'>
+              <div className='spacearound flex mt2 bottom'>
+                 <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>Shopname</Typography>
+                  </div>
+                  <Divider />
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>Email</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>Deposits</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>payouts</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>Actions</Typography>
+                  </div>
+                  </div>
+            {usermap?.map((user) => (
+              <CardContent className='spacearound flex bottom'>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>Shopname</Typography>*/}
+                      <Typography>{user?.shop}</Typography>
+                  </div>
+                  <Divider />
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>Email</Typography>*/}
+                      <Typography>{user?.email}</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>Deposits</Typography>*/}
+                      <Typography>0</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>payouts</Typography>*/}
+                      <Typography>0</Typography>
+                  </div>
+                  <div className='width10 spacebetween'>
+                    <Button variant="contained" className='width5' onClick={() => deleteuser(user?.shop)}>Delete</Button>
+                    <Button variant="contained" className='width5' onClick={() => blockuser(user?.shop)}>Block</Button>
+                    <Link to={'/transaction/' + user?.shop }><Button variant="contained" className='width5' >View</Button></Link>
+                  </div>
+              </CardContent>
             ))}
+            </Card>
           </div>
         </Box>
     </Box>
   );
 }
+                    {/*<CardContent className='spacearound flex'>
+                    usermap?.map((user) => (
+                                    <div className='justcenter flex aligncenter column width20 mb2'>
+                                      <Typography>Shopname</Typography>
+                                      <Typography>{user?.shop}</Typography>
+                                    </div>
+                                    <div className='justcenter flex aligncenter column width20 mb2'>
+                                      <Typography>Email</Typography>
+                                      <Typography>{user?.email}</Typography>
+                                    </div>
+                                    <div className='justcenter flex aligncenter column width20 mb2'>
+                                      <Typography>Deposits</Typography>
+                                      <Typography>getdeposits</Typography>
+                                    </div>
+                                    <div className='justcenter flex aligncenter column width20 mb2'>
+                                      <Typography>payouts</Typography>
+                                      <Typography>getcount</Typography>
+                                    </div>
+                                                ))
+                    </CardContent>*
+                    <CardActions> usermap?.map((user) => (
+                       {/*<Button variant="contained" onClick={() => deleteuser(user?.shop)}>Delete</Button>*/
+                       /*<Button variant="contained" onClick={() => blockuser(user?.shop)}>Block</Button>*/
+                    /*</CardActions>*/}

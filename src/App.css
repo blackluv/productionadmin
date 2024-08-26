@@ -24,12 +24,38 @@
   color: white;
 }
 
+.spacearound{
+  justify-content: space-around;
+}
+
+.width20{
+  width: 15%;
+}
+
+.width5{
+  width: 2% !important;
+}
+
+.width10{
+  width: 16%;
+}
+
 .mb2{
   margin-bottom: 2%;
 }
 
 .App-link {
   color: #61dafb;
+}
+.bottom{
+  margin: 0;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  border-width: 0;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.12);
+  border-bottom-width: thin;
 }
 
 .spacebetween{
@@ -46,6 +72,10 @@
   display: flex;
 }
 
+.halfwidth{
+  width: 48%;
+}
+
 .width{
   width: 100%;
 }
@@ -58,6 +88,10 @@
 }
 .row{
   flex-direction: row;
+}
+
+.mt2{
+  margin-top: 2% !important;
 }
 
 .mb10{

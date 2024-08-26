@@ -27,6 +27,7 @@ import './App.css';
 import { CardHeader } from '@mui/material';
 import { Link } from 'react-router-dom';
 import useSWR from 'swr';
+import { useParams } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -63,7 +64,7 @@ function a11yProps(index) {
 export default function PermanentDrawerLeft() {
   const [currentAccount, setCurrentAccount] = React.useState('');
   const [open, setOpen] = React.useState(false);
-  const [id, setId] = React.useState(false)
+  //const [id, setId] = React.useState(false)
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [open1, setOpen1] = React.useState(false);
@@ -72,6 +73,7 @@ export default function PermanentDrawerLeft() {
   const [shopname, setShopname] = useState();
   const [email, setEmail] = useState();
   const [connectedaddress, setConnectedaddress] = useState();
+  const { id } = useParams();
   const style = {
     position: 'absolute',
     top: '50%',
@@ -89,10 +91,10 @@ export default function PermanentDrawerLeft() {
   //createuser
   async function createuser(shop, email, connectedaddress) {
     const urlencoded = new URLSearchParams()
-    urlencoded.append("user", shop)
+    urlencoded.append("shop", shop)
     urlencoded.append("email", email)
-    urlencoded.append("password", connectedaddress)
-      return fetch('https://novapay.live/asi/admin/create', {
+    urlencoded.append("connectedaddress", connectedaddress)
+      return fetch('https://novapay.live/asi/user/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -102,12 +104,11 @@ export default function PermanentDrawerLeft() {
         .then(data => data.json()
       )
      }
-  //getall invoice
   const {
     data: getusers,
     error,
     isValidating,
-  } = useSWR('https://novapay.live/asi/get/alladmins', fetcher, { refreshInterval: 36000000 });
+  } = useSWR('https://novapay.live/asi/get/getsingleshoptx?shop=' + id, fetcher, { refreshInterval: 36000000 });
   console.log(getusers, 'countries')
   const usermap = getusers?.data
 
@@ -118,8 +119,8 @@ export default function PermanentDrawerLeft() {
   //deleteuser
   async function deleteuser(shop) {
     const urlencoded = new URLSearchParams()
-    urlencoded.append("user", shop)
-      return fetch('https://novapay.live/asi/admin/delete', {
+    urlencoded.append("shop", shop)
+      return fetch('https://novapay.live/asi/user/delete', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -290,87 +291,90 @@ export default function PermanentDrawerLeft() {
         {/*<Toolbar />*/}
         <div class="">
             <div className='mb5 flex width spacebetween'>
-            <Typography variant='h4' className=''>Admins Controller</Typography>
-            <Button variant='contained' onClick={handleOpen}>Create Admin</Button>
-            <Modal
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style}>
-                <Card className='width'>
-                  <CardContent>
-                    <form onSubmit={handleSubmit}>
-                        <TextField
-                            label="username"
-                            variant="outlined"
-                            fullWidth
-                            margin="normal"
-                            type='text'
-                            onChange={e => setShopname(e.target.value)}
-                        />
-                        <TextField
-                            label="email"
-                            variant="outlined"
-                            fullWidth
-                            margin="normal"
-                            type='email'
-                            onChange={e => setEmail(e.target.value)}
-                        />
-                        <TextField
-                            label="password"
-                            variant="outlined"
-                            fullWidth
-                            margin="normal"
-                            type='password'
-                            onChange={e => setConnectedaddress(e.target.value)}
-                        />
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            type="submit"
-                            className='width'
-                        >
-                            Submit
-                        </Button>
-                    </form>
-                  </CardContent>
-                  </Card>
-              </Box>
-            </Modal>
+            <Typography variant='h4' className=''>User Transactions</Typography>
             </div>
-        <Card className='width'>
+
+            <div className='flex spacebetween'>
+        <Card className='halfwidth'>
               <div className='spacearound flex mt2 bottom'>
                  <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>Name</Typography>
+                      <Typography>Transaction id</Typography>
+                  </div>
+                  <Divider />
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>Amount</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>Email</Typography>
+                      <Typography>date</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>Role</Typography>
-                  </div>
-                  <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>Action</Typography>
+                      <Typography>Status</Typography>
                   </div>
                   </div>
             {usermap?.map((user) => (
               <CardContent className='spacearound flex bottom'>
                   <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>{user?.username}</Typography>
+                      {/*<Typography>Shopname</Typography>*/}
+                      <Typography>{user?.transactionhash.slice(0, 6)}...{user?.transactionhash.slice(-4)}</Typography>
                   </div>
                   <Divider />
                   <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>{user?.email ? user?.email : "not available"}</Typography>
+                      {/*<Typography>Email</Typography>*/}
+                      <Typography>{user?.shop}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>Superadmin</Typography>
+                      {/*<Typography>Deposits</Typography>*/}
+                      <Typography>setdate</Typography>
                   </div>
-                  <Button variant="contained" className='width20' onClick={() => deleteuser(user?.username)}>Delete</Button>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>Deposits</Typography>*/}
+                      <Typography>{user?.amount}</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>payouts</Typography>*/}
+                      <Typography>{user?.status ? user?.status : "false"}</Typography>
+                  </div>
               </CardContent>
             ))}
             </Card>
+            <Card className='halfwidth'>
+              <div className='spacearound flex mt2 bottom'>
+                 <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>Transaction id</Typography>
+                  </div>
+                  <Divider />
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>Amount</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>date</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>Status</Typography>
+                  </div>
+                  </div>
+            {/*usermap?.map((user) => (
+              <CardContent className='spacearound flex bottom'>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>{user?.transactionhash.slice(0, 6)}...{user?.transactionhash.slice(-4)}</Typography>
+                  </div>
+                  <Divider />
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>{user?.shop}</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>setdate</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>{user?.amount}</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>{user?.status ? user?.status : "false"}</Typography>
+                  </div>
+              </CardContent>
+            ))*/}
+            </Card>
+            </div>
         </div>
         </Box>
     </Box>

@@ -259,26 +259,25 @@ export default function PermanentDrawerLeft() {
             </ListItem>
         </List>
         <List>
-            <ListItem key="Invoice" disablePadding>
-              <Link to= "/invoice" className='ti'>
+            <ListItem key="Deposits" disablePadding>
+              <Link to= "/deposit" className='ti'>
               <ListItemButton>
                 <ListItemIcon>
                   <InboxIcon /> 
                 </ListItemIcon>
-                <ListItemText primary="Invoice" />
+                <ListItemText primary="Deposits" />
               </ListItemButton>
               </Link>
             </ListItem>
         </List>
-        <Divider />
         <List>
-            <ListItem key="Settings" disablePadding>
-              <Link to= "/settings" className='ti'>
+            <ListItem key="Payouts" disablePadding>
+              <Link to= "/payout" className='ti'>
               <ListItemButton>
                 <ListItemIcon>
                   <InboxIcon /> 
                 </ListItemIcon>
-                <ListItemText primary="Settings" />
+                <ListItemText primary="Payouts" />
               </ListItemButton>
               </Link>
             </ListItem>
@@ -291,122 +290,54 @@ export default function PermanentDrawerLeft() {
         {/*<Toolbar />*/}
         <div class="">
             <div className='mb5 flex width spacebetween'>
-            <Typography variant='h4' className=''>Invoice List</Typography>
-            {/*<Button variant='contained' onClick={handleOpen}>Create User</Button>
-            <Modal
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style}>
-                <Card className='width'>
-                  <CardContent>
-                    <form onSubmit={handleSubmit}>
-                        <TextField
-                            label="username"
-                            variant="outlined"
-                            fullWidth
-                            margin="normal"
-                            type='text'
-                            onChange={e => setShopname(e.target.value)}
-                        />
-                        <TextField
-                            label="email"
-                            variant="outlined"
-                            fullWidth
-                            margin="normal"
-                            type='email'
-                            onChange={e => setEmail(e.target.value)}
-                        />
-                        <TextField
-                            label="connectedaddress"
-                            variant="outlined"
-                            fullWidth
-                            margin="normal"
-                            type='text'
-                            onChange={e => setConnectedaddress(e.target.value)}
-                        />
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            type="submit"
-                            className='width'
-                        >
-                            Submit
-                        </Button>
-                    </form>
-                  </CardContent>
-                  </Card>
-              </Box>
-            </Modal>*/}
+            <Typography variant='h4' className=''>Deposits</Typography>
             </div>
-              {usermap?.map((user) => (
-                  <Card className='width'>
-                    <CardContent className='spacebetween flex'>
-                      <div className='justcenter flex aligncenter column'>
-                        <Typography>Transaction Id</Typography>
-                        <Typography>{user?.transactionhash.slice(0, 6)}...{user?.transactionhash.slice(-4)}</Typography>
-                      </div>
-                      <div className='justcenter flex aligncenter column'>
-                        <Typography>Amount</Typography>
-                        <Typography>{user?.amount}</Typography>
-                      </div>
-                      <div className='justcenter flex aligncenter column'>
-                        <Typography>Payment Address</Typography>
-                        <Typography>{user?.paymentaddress.slice(0, 6)}...{user?.paymentaddress.slice(-5)}</Typography>
-                      </div>
-                      <div className='justcenter flex aligncenter column'>
-                        <Typography>Confirmed</Typography>
-                        <Typography>{user?.status ? user?.status : "false"}</Typography>
-                      </div>
-                      <div className='justcenter flex aligncenter column'>
-                        <Typography>Shop</Typography>
-                        <Typography>{user?.shop}</Typography>
-                      </div>
-                      {/*<Button variant="contained" onClick={deleteuser(user?.shop)}>Delete</Button>*/}
-                      {/*<Button variant="contained" onClick={blockuser(user?.shop)}>Block</Button>*/}
-                      {/*<Modal
-                        open={open1}
-                        onClose={handleClose1}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                      >
-                        <Box sx={style}>
-                          <Card className='width'>
-                            <CardContent className='flex column'>
-                              <div className='justcenter flex aligncenter column'>
-                                <Typography>Shopname</Typography>
-                                <Typography>{id?.shop}</Typography>
-                              </div>
-                              <div className='justcenter flex aligncenter column'>
-                                <Typography>Email</Typography>
-                                <Typography>{id?.email}</Typography>
-                              </div>
-                              <div className='justcenter flex aligncenter column'>
-                                <Typography>Connected Address</Typography>
-                                <Typography>{id?.connectedaddress}</Typography>
-                              </div>
-                              <div className='justcenter flex aligncenter column'>
-                                <Typography>apicount</Typography>
-                                <Typography>{id?.count}</Typography>
-                              </div>
-                              <div className='justcenter flex aligncenter column'>
-                                <Typography>UserRole</Typography>
-                                <Typography>{id?.role}</Typography>
-                              </div>
-                            </CardContent>
-                            <CardActions className='width'>
-                            <Button variant="contained" onClick={deleteuser(id?.shop)}>Delete</Button>
-                            <Button variant="contained" onClick={blockuser(id?.shop)}>Block</Button>
-                            </CardActions>
-                          </Card>
-                        </Box>
-                      </Modal>*/}
-                    </CardContent>
-                  </Card>
+        <Card className='width'>
+              <div className='spacearound flex mt2 bottom'>
+                 <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>Transaction id</Typography>
+                  </div>
+                  <Divider />
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>Shop</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>Time</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>amount</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>Status/isconfirmed</Typography>
+                  </div>
+                  </div>
+            {usermap?.map((user) => (
+              <CardContent className='spacearound flex bottom'>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>Shopname</Typography>*/}
+                      <Typography>{user?.transactionhash.slice(0, 6)}...{user?.transactionhash.slice(-4)}</Typography>
+                  </div>
+                  <Divider />
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>Email</Typography>*/}
+                      <Typography>{user?.shop}</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>Deposits</Typography>*/}
+                      <Typography>setdate</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>Deposits</Typography>*/}
+                      <Typography>{user?.amount}</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>payouts</Typography>*/}
+                      <Typography>{user?.status ? user?.status : "false"}</Typography>
+                  </div>
+              </CardContent>
             ))}
-          </div>
+            </Card>
+        </div>
         </Box>
     </Box>
   );
