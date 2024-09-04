@@ -111,6 +111,15 @@ export default function PermanentDrawerLeft() {
   console.log(getusers, 'countries')
   const usermap = getusers?.data
 
+  const {
+    data: user10,
+    error10,
+    isValidating10,
+  } = useSWR('https://novapay.live/api/get/allrequest?shop=' + user5?.data?.shop, fetcher, { refreshInterval: 36000000 });
+  console.log(user10?.data, 'countries4')
+
+const requestmap = user10?.data
+
   //getuser 
   async function getuser(id) {
     return usermap[id]
@@ -317,34 +326,36 @@ export default function PermanentDrawerLeft() {
                       <Typography>action</Typography>
                   </div>
                   </div>
+                  {requestmap?.map((request) => (
                   <CardContent className='spacearound flex bottom'>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Shopname</Typography>*/}
-                      <Typography>u2hnx3...bcqp</Typography>
+                      <Typography>{request.transactionhash}</Typography>
                   </div>
                   <Divider />
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Email</Typography>*/}
-                      <Typography>sujidev</Typography>
+                      <Typography>{request.shop}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
-                      <Typography>0x01FF...E987db</Typography>
+                      <Typography>{request.wallet}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
-                      <Typography>{100}</Typography>
+                      <Typography>{request.amount}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>payouts</Typography>*/}
-                      <Typography>{"Eth"}</Typography>
+                      <Typography>{request.token}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>payouts</Typography>*/}
-                      <Typography>{"Completed"}</Typography>
+                      <Typography>{request.iscompleted}</Typography>
                   </div>
                   <Button  className='width20' >Action</Button>
               </CardContent>
+               ))}
             </Card>
         </div>
         </Box>
