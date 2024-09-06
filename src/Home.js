@@ -278,12 +278,6 @@ export default function PermanentDrawerLeft() {
                 <Typography>{chit3}</Typography>
                 </CardContent>
               </Card>
-              <Card className='lit1 justcenter flex'>
-                <CardContent className='flex aligncenter column'>
-                <Typography>Accounts Created today</Typography>
-                <Typography>0</Typography>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </Box>
