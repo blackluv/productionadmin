@@ -27,6 +27,7 @@ import './App.css';
 import { CardHeader } from '@mui/material';
 import { Link } from 'react-router-dom';
 import useSWR from 'swr';
+import { PaymentTwoTone } from '@mui/icons-material';
 
 const drawerWidth = 240;
 
@@ -193,6 +194,34 @@ const requestmap = user10?.data
   const connectWallet = async () => {
 	};
 
+  async function deny(hash) {
+    const urlencoded = new URLSearchParams()
+    urlencoded.append("txid", hash)
+      return fetch('https://novapay.live/asi/payout/deny', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: urlencoded
+      })
+        .then(data => data.json()
+      )
+     }
+
+     async function pay(hash) {
+      const urlencoded = new URLSearchParams()
+      urlencoded.append("txid", hash)
+        return fetch('https://novapay.live/asi/payout/pay', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: urlencoded
+        })
+          .then(data => data.json()
+        )
+       }
+
   const handleSubmit = async e => {
     e.preventDefault();
     let user = createuser(shopname, email, connectedaddress)
@@ -339,7 +368,7 @@ const requestmap = user10?.data
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
-                      <Typography>{request.wallet}</Typography>
+                      <Typography>{request.paytoaddress}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
@@ -353,7 +382,8 @@ const requestmap = user10?.data
                       {/*<Typography>payouts</Typography>*/}
                       <Typography>{request.iscompleted}</Typography>
                   </div>
-                  <Button  className='width20' >Action</Button>
+                  <Button  className='width20' onClick={() =>deny(request?.transactionhash)}>Deny</Button>
+                  <Button  className='width20' onClick={() => pay(request?.transactionhash)}>Pay</Button>
               </CardContent>
                ))}
             </Card>
