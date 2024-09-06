@@ -121,6 +121,24 @@ export default function PermanentDrawerLeft() {
   console.log(totalusers1, 'countries')
   const chit1 = totalusers1?.data
 
+  const {
+    data: totalusers2,
+    error2,
+    isValidating2,
+  } = useSWR('https://novapay.live/asi/get/ispaid', fetcher, { refreshInterval: 36000000 });
+
+  console.log(totalusers2, 'countries')
+  const chit2 = totalusers2?.data
+
+  const {
+    data: totalusers3,
+    error3,
+    isValidating3,
+  } = useSWR('https://novapay.live/asi/get/requestcount', fetcher, { refreshInterval: 36000000 });
+
+  console.log(totalusers3, 'countries')
+  const chit3 = totalusers3?.data
+
 
   const connectWallet = async () => {
 	};
@@ -250,14 +268,14 @@ export default function PermanentDrawerLeft() {
             <div className='flex spacebetween width row'>
               <Card className='lit1 justcenter flex'>
                 <CardContent className='flex aligncenter column'>
-                <Typography>Fee wallet balance</Typography>
-                <Typography>0</Typography>
+                <Typography>Total Invoice Paid</Typography>
+              <Typography>{chit2}</Typography>
                 </CardContent>
               </Card>
               <Card className='lit1 justcenter aligncenter flex'>
                 <CardContent className='flex aligncenter column'>
-                <Typography>Invoice created Today</Typography>
-                <Typography>0</Typography>
+                <Typography>Total Request</Typography>
+                <Typography>{chit3}</Typography>
                 </CardContent>
               </Card>
               <Card className='lit1 justcenter flex'>
