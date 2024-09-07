@@ -380,7 +380,7 @@ const requestmap = user10?.data
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>payouts</Typography>*/}
-                      <Typography>{request.iscompleted}</Typography>
+                      <Typography>{request?.isconfirmed == true ? "true" : "false"}</Typography>
                   </div>
                   <Button  className='width20' onClick={() =>deny(request?.transactionhash)}>Deny</Button>
                   <Button  className='width20' onClick={() => pay(request?.transactionhash)}>Pay</Button>

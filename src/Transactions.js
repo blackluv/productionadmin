@@ -332,7 +332,7 @@ export default function PermanentDrawerLeft() {
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>payouts</Typography>*/}
-                      <Typography>{user?.status ? user?.status : "false"}</Typography>
+                      <Typography>{user?.isconfirmed == true ? "true" : "false"}</Typography>
                   </div>
               </CardContent>
             ))}
