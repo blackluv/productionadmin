@@ -151,7 +151,7 @@ export default function PermanentDrawerLeft() {
       isValidating7,
     } = useSWR('https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=' + used5?.connectedaddress + '&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=5MB1DN839Y3E8YUQGE5WAB7R522FKYUD7Y', fetcher, { refreshInterval: 3600000 });
   
-    console.log(user7.result, 'usertx')
+    console.log(user7?.result, 'usertx')
   
     const rest = user7?.result
 
