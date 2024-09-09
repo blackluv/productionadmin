@@ -453,7 +453,7 @@ export default function PermanentDrawerLeft() {
                         </div>
                       </CardContent>
                     </Card>
-                    )) : <Typography></Typography>}
+                    )) : <Typography>h</Typography>}
                   {rest1 ? rest1?.map((rest1) => (
                     <Card className='width mb2'>
                       <CardContent className='spacebetween flex'>
@@ -475,7 +475,7 @@ export default function PermanentDrawerLeft() {
                         </div>
                       </CardContent>
                     </Card>
-                    )) : <Typography></Typography>}
+                    )) : <Typography>g</Typography>}
                   {rest2 ? rest2?.map((rest2) => (
                     <Card className='width mb2'>
                       <CardContent className='spacebetween flex'>
@@ -493,7 +493,7 @@ export default function PermanentDrawerLeft() {
                         </div>
                       </CardContent>
                     </Card>
-                    )) : <Typography></Typography>}
+                    )) : <Typography>h</Typography>}
               </div>
             {/*usermap?.map((user) => (
               <CardContent className='spacearound flex bottom'>
