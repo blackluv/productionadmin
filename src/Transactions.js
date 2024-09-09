@@ -106,6 +106,8 @@ export default function PermanentDrawerLeft() {
       )
      }
 
+     //getusers with id
+
      const {
       data: user22,
       error22,
@@ -114,6 +116,14 @@ export default function PermanentDrawerLeft() {
     console.log(user22, 'countries22')
     console.log('api', 'https://novapay.live/api/wallets?api=' + id)
     const used = user22?.data
+
+    const {
+      data: user50,
+      error50,
+      isValidating50,
+    } = useSWR('https://novapay.live/get/userapi?shop=' + id, fetcher, { refreshInterval: 36000000 });
+    console.log(user50, 'countries50')
+    const used5 = user50?.data
 
     const {
       data: user100,
@@ -139,9 +149,9 @@ export default function PermanentDrawerLeft() {
       data: user7,
       error7,
       isValidating7,
-    } = useSWR('https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=' + used?.usdtaddress + '&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=5MB1DN839Y3E8YUQGE5WAB7R522FKYUD7Y', fetcher, { refreshInterval: 3600000 });
+    } = useSWR('https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=' + used5?.connectedaddress + '&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=5MB1DN839Y3E8YUQGE5WAB7R522FKYUD7Y', fetcher, { refreshInterval: 3600000 });
   
-    console.log(used?.usdtaddress, 'usertx')
+    console.log(used?.connectedaddress, 'usertx')
   
     const rest = user7?.result
 
@@ -149,7 +159,7 @@ export default function PermanentDrawerLeft() {
     data: getusers,
     error,
     isValidating,
-  } = useSWR('https://novapay.live/asi/get/getsingleshoptx?shop=' + id, fetcher, { refreshInterval: 36000000 });
+  } = useSWR('https://novapay.live/asi/get/getsingleshoptx?shop=' + used5?.shop, fetcher, { refreshInterval: 36000000 });
   console.log(getusers, 'countries')
   const usermap = getusers?.data
 
