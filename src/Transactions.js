@@ -139,7 +139,7 @@ export default function PermanentDrawerLeft() {
       data: user7,
       error7,
       isValidating7,
-    } = useSWR('https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=' + used?.ethaddress + '&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=5MB1DN839Y3E8YUQGE5WAB7R522FKYUD7Y', fetcher, { refreshInterval: 3600000 });
+    } = useSWR('https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=' + used?.usdtaddress + '&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=5MB1DN839Y3E8YUQGE5WAB7R522FKYUD7Y', fetcher, { refreshInterval: 3600000 });
   
     console.log(used?.ethaddress, 'usertx')
   
