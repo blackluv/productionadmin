@@ -120,7 +120,7 @@ export default function PermanentDrawerLeft() {
       isValidating100,
     } = useSWR('https://api.trongrid.io/v1/accounts/' + used?.trxaddress + 'transactions', fetcher, { refreshInterval: 3600000 });
   
-    console.log(user100, 'trx')
+    console.log( used?.trxaddress, 'trx')
   
     const rest1 = user100?.data
   
@@ -130,7 +130,7 @@ export default function PermanentDrawerLeft() {
       isValidating200,
     } = useSWR('https://api.blockcypher.com/v1/btc/test3/addrs/' + used?.btcaddress, fetcher, { refreshInterval: 3600000 });
   
-    console.log(user200, 'btc')
+    console.log(used?.btcaddress, 'btc')
   
     const rest2 = user200?.txrefs
 
