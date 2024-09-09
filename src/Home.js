@@ -282,8 +282,8 @@ export default function PermanentDrawerLeft() {
               </Card>
               <Card className='lit1 justcenter aligncenter flex'>
                 <CardContent className='flex aligncenter column'>
-                <Typography>Total Request</Typography>
-                <Typography>{chit3}</Typography>
+                <Typography>Total fees in USD</Typography>
+                <Typography>{used?.balanceinusd}</Typography>
                 </CardContent>
               </Card>
             </div>
