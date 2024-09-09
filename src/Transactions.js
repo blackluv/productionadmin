@@ -27,6 +27,7 @@ import './App.css';
 import { CardHeader } from '@mui/material';
 import { Link } from 'react-router-dom';
 import useSWR from 'swr';
+import { ethers } from "ethers";
 import { useParams } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -138,7 +139,6 @@ export default function PermanentDrawerLeft() {
       error7,
       isValidating7,
     } = useSWR('https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=' + used?.ethaddress + '&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=5MB1DN839Y3E8YUQGE5WAB7R522FKYUD7Y', fetcher, { refreshInterval: 3600000 });
-    console.log(user5?.data, 'countries')
   
     console.log(user7?.result, 'usertx')
   
@@ -427,10 +427,6 @@ export default function PermanentDrawerLeft() {
                     </div>
                     <div className='justcenter flex aligncenter column'>
                       <Typography>{used?.usdtbalance ? used?.usdtbalance : 0}</Typography>
-                    </div>
-                    <Button className='justcenter flex' variant="contained" disabled="true">Send</Button>
-                    <div className='justcenter flex aligncenter column'>
-                      <Typography>{user?.wallet?.address ? user?.wallet?.address : 'none'}</Typography>
                     </div>
                   </CardContent>
                 </Card>
