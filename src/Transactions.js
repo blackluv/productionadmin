@@ -121,7 +121,7 @@ export default function PermanentDrawerLeft() {
       data: user50,
       error50,
       isValidating50,
-    } = useSWR('https://novapay.live/get/userapi?shop=' + id, fetcher, { refreshInterval: 36000000 });
+    } = useSWR('https://novapay.live/api/get/userapi?shop=' + id, fetcher, { refreshInterval: 36000000 });
     console.log(user50, 'countries50')
     const used5 = user50?.data
 
