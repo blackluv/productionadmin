@@ -381,7 +381,7 @@ export default function PermanentDrawerLeft() {
                   <div className='width10 spacebetween'>
                     <Button variant="contained" className='width5' onClick={() => deleteuser(user?.shop)}>Delete</Button>
                     <Button variant="contained" className='width5' onClick={() => blockuser(user?.shop)}>Block</Button>
-                    <Link to={'/transaction/' + user?.shop }><Button variant="contained" className='width5' >View</Button></Link>
+                    <Link to={'/transaction/' + user?.apikey }><Button variant="contained" className='width5' >View</Button></Link>
                   </div>
               </CardContent>
             ))}

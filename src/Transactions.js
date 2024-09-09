@@ -104,6 +104,45 @@ export default function PermanentDrawerLeft() {
         .then(data => data.json()
       )
      }
+
+     const {
+      data: user22,
+      error22,
+      isValidating22,
+    } = useSWR('https://novapay.live/api/wallets?api=' + id, fetcher, { refreshInterval: 36000000 });
+    console.log(user22, 'countries22')
+
+    const {
+      data: user100,
+      error100,
+      isValidating100,
+    } = useSWR('https://api.trongrid.io/v1/accounts/' + used?.trxaddress + 'transactions', fetcher, { refreshInterval: 3600000 });
+  
+    console.log(user100, 'trx')
+  
+    const rest1 = user100?.data
+  
+    const {
+      data: user200,
+      error200,
+      isValidating200,
+    } = useSWR('https://api.blockcypher.com/v1/btc/test3/addrs/' + used?.btcaddress, fetcher, { refreshInterval: 3600000 });
+  
+    console.log(user200, 'btc')
+  
+    const rest2 = user200?.txrefs
+
+    const {
+      data: user7,
+      error7,
+      isValidating7,
+    } = useSWR('https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=' + user?.wallet?.address + '&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=5MB1DN839Y3E8YUQGE5WAB7R522FKYUD7Y', fetcher, { refreshInterval: 3600000 });
+    console.log(user5?.data, 'countries')
+  
+    console.log(user7?.result, 'usertx')
+  
+    const rest = user7?.result
+
   const {
     data: getusers,
     error,
@@ -305,9 +344,6 @@ export default function PermanentDrawerLeft() {
                       <Typography>Amount</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>date</Typography>
-                  </div>
-                  <div className='justcenter flex aligncenter column width20 mb2'>
                       <Typography>Status</Typography>
                   </div>
                   </div>
@@ -324,10 +360,6 @@ export default function PermanentDrawerLeft() {
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
-                      <Typography>setdate</Typography>
-                  </div>
-                  <div className='justcenter flex aligncenter column width20 mb2'>
-                      {/*<Typography>Deposits</Typography>*/}
                       <Typography>{user?.amount}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
@@ -338,21 +370,133 @@ export default function PermanentDrawerLeft() {
             ))}
             </Card>
             <Card className='halfwidth'>
+            <Card className='width mb2'>
+                  <CardContent className='spacebetween flex'>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>Ethereum</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{used?.ethbalance ? used?.ethbalance / 1000000000000000000 : 0}</Typography>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className='width mb2'>
+                  <CardContent className='spacebetween flex'>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>Solana</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{used?.solbalance ? used?.solbalance / 1000000000 : 0}</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{used?.soladdress ? used?.soladdress : 'none'}</Typography>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className='width mb2'>
+                  <CardContent className='spacebetween flex'>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>Tron</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{used?.trxbalance ? used?.trxbalance / 1000000 : 0}</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{used?.trxaddress ? used?.trxaddress : 'none'}</Typography>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className='width mb2'>
+                  <CardContent className='spacebetween flex'>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>Bitcoin</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{used?.btcbalance ? used?.btcbalance / 100000000 : 0}</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{used?.btcaddress ? used?.btcaddress  : 'none'}</Typography>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className='width mb2'>
+                  <CardContent className='spacebetween flex'>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>USDT</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{used?.usdtbalance ? used?.usdtbalance : 0}</Typography>
+                    </div>
+                    <Button className='justcenter flex' variant="contained" disabled="true">Send</Button>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{user?.wallet?.address ? user?.wallet?.address : 'none'}</Typography>
+                    </div>
+                  </CardContent>
+                </Card>
               <div className='spacearound flex mt2 bottom'>
-                 <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>Transaction id</Typography>
-                  </div>
-                  <Divider />
-                  <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>Amount</Typography>
-                  </div>
-                  <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>date</Typography>
-                  </div>
-                  <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>Status</Typography>
-                  </div>
-                  </div>
+                  {rest ? rest?.map((resp) => (
+                    <Card className='width mb2'>
+                      <CardContent className='spacebetween flex'>
+                        <div className='justcenter flex aligncenter column'>
+                          <Typography>Transaction Hash</Typography>
+                          <Typography> {resp?.hash.slice(0, 6)}...{resp?.hash.slice(-4)}</Typography>
+                        </div>
+                        <div className='justcenter flex aligncenter column'>
+                          <Typography>Confirmation</Typography>
+                          <Typography>{resp?.confirmations}</Typography>
+                        </div>
+                        <div className='justcenter flex aligncenter column'>
+                          <Typography>Amount</Typography>
+                          <Typography>{Math.round(ethers.utils.formatEther(resp?.value) * 1e2) / 1e2}</Typography>
+                        </div>
+                        <div className='justcenter flex aligncenter column'>
+                          <Typography>To Address</Typography>
+                          <Typography>{resp?.to.slice(0, 6)}...{resp?.to.slice(-4)}</Typography>
+                        </div>
+                      </CardContent>
+                    </Card>
+                    )) : <Typography></Typography>}
+                  {rest1 ? rest1?.map((resp) => (
+                    <Card className='width mb2'>
+                      <CardContent className='spacebetween flex'>
+                        <div className='justcenter flex aligncenter column'>
+                          <Typography>Transaction Hash</Typography>
+                          <Typography> {resp?.txID.slice(0, 6)}...{resp?.txID.slice(-4)}</Typography>
+                        </div>
+                        <div className='justcenter flex aligncenter column'>
+                          <Typography>Confirmation</Typography>
+                          <Typography>{resp?.ret[0].contractret}</Typography>
+                        </div>
+                        <div className='justcenter flex aligncenter column'>
+                          <Typography>Amount</Typography>
+                          <Typography>{resp?.raw_data.contract[0].parameter.value.amount}</Typography>
+                        </div>
+                        <div className='justcenter flex aligncenter column'>
+                          <Typography>To Address</Typography>
+                          <Typography>{resp?.raw_data.contract[0].parameter.value.to_address.slice(0, 6)}...{resp?.raw_data.contract[0].parameter.value.to_address.slice(-4)}</Typography>
+                        </div>
+                      </CardContent>
+                    </Card>
+                    )) : <Typography></Typography>}
+                  {rest2 ? rest2?.map((resp) => (
+                    <Card className='width mb2'>
+                      <CardContent className='spacebetween flex'>
+                        <div className='justcenter flex aligncenter column'>
+                          <Typography>Transaction Hash</Typography>
+                          <Typography> {resp?.tx_hash.slice(0, 6)}...{resp?.tx_hash.slice(-4)}</Typography>
+                        </div>
+                        <div className='justcenter flex aligncenter column'>
+                          <Typography>Confirmation</Typography>
+                          <Typography>{resp?.confirmations}</Typography>
+                        </div>
+                        <div className='justcenter flex aligncenter column'>
+                          <Typography>Amount</Typography>
+                          <Typography>{resp?.value / 100000000}</Typography>
+                        </div>
+                      </CardContent>
+                    </Card>
+                    )) : <Typography></Typography>}
+              </div>
             {/*usermap?.map((user) => (
               <CardContent className='spacearound flex bottom'>
                   <div className='justcenter flex aligncenter column width20 mb2'>

@@ -113,6 +113,14 @@ export default function PermanentDrawerLeft() {
   const chit = totalusers?.data
 
   const {
+    data: user22,
+    error22,
+    isValidating22,
+  } = useSWR('https://novapay.live/api/adminwallets', fetcher, { refreshInterval: 36000000 });
+  console.log(user22, 'countries22')
+  const used = user22?.data
+
+  const {
     data: totalusers1,
     error1,
     isValidating1,
@@ -279,6 +287,69 @@ export default function PermanentDrawerLeft() {
                 </CardContent>
               </Card>
             </div>
+            <Card className='width mb2'>
+                  <CardContent className='spacebetween flex'>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>Ethereum</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{used?.ethbalance ? used?.ethbalance / 1000000000000000000 : 0}</Typography>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className='width mb2'>
+                  <CardContent className='spacebetween flex'>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>Solana</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{used?.solbalance ? used?.solbalance / 1000000000 : 0}</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{used?.soladdress ? used?.soladdress : 'none'}</Typography>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className='width mb2'>
+                  <CardContent className='spacebetween flex'>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>Tron</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{used?.trxbalance ? used?.trxbalance / 1000000 : 0}</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{used?.trxaddress ? used?.trxaddress : 'none'}</Typography>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className='width mb2'>
+                  <CardContent className='spacebetween flex'>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>Bitcoin</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{used?.btcbalance ? used?.btcbalance / 100000000 : 0}</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{used?.btcaddress ? used?.btcaddress  : 'none'}</Typography>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className='width mb2'>
+                  <CardContent className='spacebetween flex'>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>USDT</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{used?.usdtbalance ? used?.usdtbalance : 0}</Typography>
+                    </div>
+                    <Button className='justcenter flex' variant="contained" disabled="true">Send</Button>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{user?.wallet?.address ? user?.wallet?.address : 'none'}</Typography>
+                    </div>
+                  </CardContent>
+                </Card>
           </div>
         </Box>
     </Box>
