@@ -330,7 +330,7 @@ export default function PermanentDrawerLeft() {
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
-                      <Typography>setdate</Typography>
+                      <Typography>{new Date(user?.date ).toLocaleString()}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
