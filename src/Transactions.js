@@ -140,7 +140,7 @@ export default function PermanentDrawerLeft() {
       isValidating7,
     } = useSWR('https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=' + used?.ethaddress + '&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=5MB1DN839Y3E8YUQGE5WAB7R522FKYUD7Y', fetcher, { refreshInterval: 3600000 });
   
-    console.log(user7?.result, 'usertx')
+    console.log(used?.ethaddress, 'usertx')
   
     const rest = user7?.result
 
@@ -431,64 +431,64 @@ export default function PermanentDrawerLeft() {
                   </CardContent>
                 </Card>
               <div className='spacearound flex mt2 bottom'>
-                  {rest ? rest?.map((resp) => (
+                  {rest ? rest?.map((rest) => (
                     <Card className='width mb2'>
                       <CardContent className='spacebetween flex'>
                         <div className='justcenter flex aligncenter column'>
                           <Typography>Transaction Hash</Typography>
-                          <Typography> {resp?.hash.slice(0, 6)}...{resp?.hash.slice(-4)}</Typography>
+                          <Typography> {rest?.hash.slice(0, 6)}...{rest?.hash.slice(-4)}</Typography>
                         </div>
                         <div className='justcenter flex aligncenter column'>
                           <Typography>Confirmation</Typography>
-                          <Typography>{resp?.confirmations}</Typography>
+                          <Typography>{rest?.confirmations}</Typography>
                         </div>
                         <div className='justcenter flex aligncenter column'>
                           <Typography>Amount</Typography>
-                          <Typography>{Math.round(ethers.utils.formatEther(resp?.value) * 1e2) / 1e2}</Typography>
+                          <Typography>{Math.round(ethers.utils.formatEther(rest?.value) * 1e2) / 1e2}</Typography>
                         </div>
                         <div className='justcenter flex aligncenter column'>
                           <Typography>To Address</Typography>
-                          <Typography>{resp?.to.slice(0, 6)}...{resp?.to.slice(-4)}</Typography>
+                          <Typography>{rest?.to.slice(0, 6)}...{rest?.to.slice(-4)}</Typography>
                         </div>
                       </CardContent>
                     </Card>
                     )) : <Typography></Typography>}
-                  {rest1 ? rest1?.map((resp) => (
+                  {rest1 ? rest1?.map((rest1) => (
                     <Card className='width mb2'>
                       <CardContent className='spacebetween flex'>
                         <div className='justcenter flex aligncenter column'>
                           <Typography>Transaction Hash</Typography>
-                          <Typography> {resp?.txID.slice(0, 6)}...{resp?.txID.slice(-4)}</Typography>
+                          <Typography> {rest1?.txID.slice(0, 6)}...{rest1?.txID.slice(-4)}</Typography>
                         </div>
                         <div className='justcenter flex aligncenter column'>
                           <Typography>Confirmation</Typography>
-                          <Typography>{resp?.ret[0].contractret}</Typography>
+                          <Typography>{rest1?.ret[0].contractret}</Typography>
                         </div>
                         <div className='justcenter flex aligncenter column'>
                           <Typography>Amount</Typography>
-                          <Typography>{resp?.raw_data.contract[0].parameter.value.amount}</Typography>
+                          <Typography>{rest1?.raw_data.contract[0].parameter.value.amount}</Typography>
                         </div>
                         <div className='justcenter flex aligncenter column'>
                           <Typography>To Address</Typography>
-                          <Typography>{resp?.raw_data.contract[0].parameter.value.to_address.slice(0, 6)}...{resp?.raw_data.contract[0].parameter.value.to_address.slice(-4)}</Typography>
+                          <Typography>{rest1?.raw_data.contract[0].parameter.value.to_address.slice(0, 6)}...{rest1?.raw_data.contract[0].parameter.value.to_address.slice(-4)}</Typography>
                         </div>
                       </CardContent>
                     </Card>
                     )) : <Typography></Typography>}
-                  {rest2 ? rest2?.map((resp) => (
+                  {rest2 ? rest2?.map((rest2) => (
                     <Card className='width mb2'>
                       <CardContent className='spacebetween flex'>
                         <div className='justcenter flex aligncenter column'>
                           <Typography>Transaction Hash</Typography>
-                          <Typography> {resp?.tx_hash.slice(0, 6)}...{resp?.tx_hash.slice(-4)}</Typography>
+                          <Typography> {rest2?.tx_hash.slice(0, 6)}...{rest2?.tx_hash.slice(-4)}</Typography>
                         </div>
                         <div className='justcenter flex aligncenter column'>
                           <Typography>Confirmation</Typography>
-                          <Typography>{resp?.confirmations}</Typography>
+                          <Typography>{rest2?.confirmations}</Typography>
                         </div>
                         <div className='justcenter flex aligncenter column'>
                           <Typography>Amount</Typography>
-                          <Typography>{resp?.value / 100000000}</Typography>
+                          <Typography>{rest2?.value / 100000000}</Typography>
                         </div>
                       </CardContent>
                     </Card>
