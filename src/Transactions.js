@@ -151,7 +151,7 @@ export default function PermanentDrawerLeft() {
       isValidating7,
     } = useSWR('https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=' + used5?.connectedaddress + '&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=5MB1DN839Y3E8YUQGE5WAB7R522FKYUD7Y', fetcher, { refreshInterval: 3600000 });
   
-    console.log(used?.connectedaddress, 'usertx')
+    console.log(user7, 'usertx')
   
     const rest = user7?.result
 
@@ -443,7 +443,7 @@ export default function PermanentDrawerLeft() {
                 </Card>
                 <Typography className='mb2'>Merchant Wallet Transactions</Typography>
               <div className='spacearound flex mt2 bottom'>
-                  {rest ? rest?.map((rest) => (
+                  {/*rest ? rest?.map((rest) => (
                     <Card className='width mb2'>
                       <CardContent className='spacebetween flex'>
                         <div className='justcenter flex aligncenter column'>
@@ -464,7 +464,7 @@ export default function PermanentDrawerLeft() {
                         </div>
                       </CardContent>
                     </Card>
-                    )) : <Typography>h</Typography>}
+                    )) : <Typography>h</Typography>*/}
                   {rest1 ? rest1?.map((rest1) => (
                     <Card className='width mb2'>
                       <CardContent className='spacebetween flex'>
