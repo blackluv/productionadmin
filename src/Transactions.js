@@ -441,9 +441,9 @@ export default function PermanentDrawerLeft() {
                     </div>
                   </CardContent>
                 </Card>
-              <div className='spacearound flex mt2 bottom'>
                 <Typography className='mb2'>Merchant Wallet Transactions</Typography>
-                  {/*rest ? rest?.map((rest) => (
+              <div className='spacearound flex mt2 bottom'>
+                  {rest ? rest?.map((rest) => (
                     <Card className='width mb2'>
                       <CardContent className='spacebetween flex'>
                         <div className='justcenter flex aligncenter column'>
@@ -486,7 +486,7 @@ export default function PermanentDrawerLeft() {
                         </div>
                       </CardContent>
                     </Card>
-                    )) : <Typography>g</Typography>*/}
+                    )) : <Typography>g</Typography>}
                   {rest2 ? rest2?.map((rest2) => (
                     <Card className='width mb2'>
                       <CardContent className='spacebetween flex'>
