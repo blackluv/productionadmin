@@ -219,9 +219,9 @@ export default function PermanentDrawerLeft() {
   }
 
   const checkaccount = async () => {} 
-  useEffect(() => {
+  /*useEffect(() => {
     connectWallet();
-}, [currentAccount]);
+}, [currentAccount]);*/
 
   return (
     <Box sx={{ display: 'flex' }}>
