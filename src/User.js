@@ -291,7 +291,7 @@ export default function PermanentDrawerLeft() {
         <div class="">
             <div className='mb5 flex width spacebetween'>
             <Typography variant='h4' className=''>Novapay Users</Typography>
-            <Button variant='contained' onClick={handleOpen}>Create Merchnat</Button>
+            <Button variant='contained' onClick={handleOpen}>Create Merchant</Button>
             <Modal
               open={open}
               onClose={handleClose}
@@ -353,9 +353,6 @@ export default function PermanentDrawerLeft() {
                       <Typography>Deposits</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>payouts</Typography>
-                  </div>
-                  <div className='justcenter flex aligncenter column width20 mb2'>
                       <Typography>Actions</Typography>
                   </div>
                   </div>
@@ -372,10 +369,6 @@ export default function PermanentDrawerLeft() {
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
-                      <Typography>0</Typography>
-                  </div>
-                  <div className='justcenter flex aligncenter column width20 mb2'>
-                      {/*<Typography>payouts</Typography>*/}
                       <Typography>0</Typography>
                   </div>
                   <div className='width10 spacebetween'>
