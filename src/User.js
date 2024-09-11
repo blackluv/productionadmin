@@ -66,12 +66,16 @@ export default function PermanentDrawerLeft() {
   const [id, setId] = React.useState(false)
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handleOpen1 = () => setOpen1(true);
   const [open1, setOpen1] = React.useState(false);
   const handleClose1 = () => setOpen1(false);
   const [value, setValue] = React.useState(0);
   const [shopname, setShopname] = useState();
   const [email, setEmail] = useState();
+  const [shopname1, setShopname1] = useState();
+  const [email1, setEmail1] = useState();
   const [connectedaddress, setConnectedaddress] = useState();
+  const [newapi, setnewApi] = useState();
   const style = {
     position: 'absolute',
     top: '50%',
@@ -145,6 +149,23 @@ export default function PermanentDrawerLeft() {
         .then(data => data.json()
       )
      }
+
+     //setfee
+     async function setfee() {
+      const urlencoded = new URLSearchParams()
+      urlencoded.append("deposit", shopname1)
+      urlencoded.append("withdraw", email1)
+      urlencoded.append("api", newapi)
+        return fetch('https://novapay.live/asi/user/editfee', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: urlencoded
+        })
+          .then(data => data.json()
+        )
+       }
   //blockuser
   async function blockuser(shop) {
     const urlencoded = new URLSearchParams()
@@ -181,12 +202,19 @@ export default function PermanentDrawerLeft() {
     setValue(newValue);
   };
 
-  const connectWallet = async () => {
+  const setdit = async () => {
+
 	};
 
   const handleSubmit = async e => {
     e.preventDefault();
     let user = createuser(shopname, email, connectedaddress)
+    //props.history.push("/");
+  }
+
+  const handleSubmit1 = async e => {
+    e.preventDefault();
+    let user = setfee()
     //props.history.push("/");
   }
 
@@ -374,6 +402,55 @@ export default function PermanentDrawerLeft() {
                   <div className='width10 spacebetween'>
                     <Button variant="contained" className='width5' onClick={() => deleteuser(user?.shop)}>Delete</Button>
                     <Button variant="contained" className='width5' onClick={() => blockuser(user?.shop)}>Block</Button>
+                    <Button variant="contained" className='width5' onClick={handleOpen1}>Set Fee</Button>
+                    <Modal
+                        open={open1}
+                        onClose={handleClose1}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <Box sx={style}>
+                          <Card className='width'>
+                            <CardContent>
+                              <form onSubmit={handleSubmit1(user?.apikey)}>
+                                  <TextField
+                                      label="Set deposit fee"
+                                      variant="outlined"
+                                      fullWidth
+                                      margin="normal"
+                                      type='text'
+                                      onChange={e => setShopname1(e.target.value)}
+                                  />
+                                  <TextField
+                                      label="Set withdraw fee"
+                                      variant="outlined"
+                                      fullWidth
+                                      margin="normal"
+                                      type='email'
+                                      onChange={e => setEmail1(e.target.value)}
+                                  />
+                                  <TextField
+                                      label={user?.apikey}
+                                      variant="outlined"
+                                      fullWidth
+                                      margin="normal"
+                                      type='email'
+                                      disabled = 'true'
+                                      onChange={e => setnewApi(user?.apikey)}
+                                  />
+                                  <Button
+                                      variant="contained"
+                                      color="primary"
+                                      type="submit"
+                                      className='width'
+                                  >
+                                      Submit
+                                  </Button>
+                              </form>
+                            </CardContent>
+                            </Card>
+                        </Box>
+                      </Modal>
                     <Link to={'/transaction/' + user?.apikey }><Button variant="contained" className='width5' >View</Button></Link>
                   </div>
               </CardContent>
