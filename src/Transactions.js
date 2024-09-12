@@ -383,9 +383,6 @@ export default function PermanentDrawerLeft() {
                       <Typography>Amount</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>Deposit/Withdraw</Typography>
-                  </div>
-                  <div className='justcenter flex aligncenter column width20 mb2'>
                       <Typography>Status</Typography>
                   </div>
                   </div>
@@ -403,10 +400,6 @@ export default function PermanentDrawerLeft() {
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
                       <Typography>{user?.amount}</Typography>
-                  </div>
-                  <div className='justcenter flex aligncenter column width20 mb2'>
-                      {/*<Typography>Deposits</Typography>*/}
-                      <Typography>{user?.depositfee} / {user?.withdrawfee}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>payouts</Typography>*/}

@@ -436,7 +436,7 @@ export default function PermanentDrawerLeft() {
                                       margin="normal"
                                       type='email'
                                       disabled = 'true'
-                                      onChange={e => setnewApi(user?.apikey)}
+                                      onChange={e => setnewApi(e.target.value = user?.apikey)}
                                   />
                                   <Button
                                       variant="contained"
