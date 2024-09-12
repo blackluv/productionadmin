@@ -469,7 +469,7 @@ export default function PermanentDrawerLeft() {
                   </CardContent>
                 </Card>
                 <Typography className='mb2'>Merchant Wallet Transactions</Typography>
-              <div className='spacearound flex mt2 bottom'>
+              <div className='spacearound flex mt2 bottom column'>
                   {/*rest ? rest?.map((rest) => (
                     <Card className='width mb2'>
                       <CardContent className='spacebetween flex'>

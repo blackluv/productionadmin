@@ -395,6 +395,12 @@ export default function PermanentDrawerLeft() {
                       <Typography>Deposits</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>Deposit Fee</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>Withdrawal Fee</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
                       <Typography>Actions</Typography>
                   </div>
                   </div>
@@ -412,6 +418,14 @@ export default function PermanentDrawerLeft() {
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
                       <Typography>0</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>Deposits</Typography>*/}
+                      <Typography>{user?.depositfee}</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>Deposits</Typography>*/}
+                      <Typography>{user?.withdrawfee}</Typography>
                   </div>
                   <div className='width10 spacebetween'>
                     <Button variant="contained" className='width5' onClick={() => deleteuser(user?.shop)}>Delete</Button>
