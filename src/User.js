@@ -25,6 +25,11 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import './App.css';
 import { CardHeader } from '@mui/material';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 import { Link } from 'react-router-dom';
 import useSWR from 'swr';
 
@@ -429,15 +434,18 @@ export default function PermanentDrawerLeft() {
                                       type='text'
                                       onChange={e => setEmail1(e.target.value)}
                                   />
-                                  <TextField
-                                      label={user?.apikey}
-                                      variant="outlined"
-                                      fullWidth
-                                      margin="normal"
-                                      type='email'
-                                      disabled = 'true'
-                                      onChange={e => setnewApi(e.target.value = user?.apikey)}
-                                  />
+                                      <FormControl>
+      <FormLabel id="demo-radio-buttons-group-label">Select Api button</FormLabel>
+      <RadioGroup
+        aria-labelledby="demo-radio-buttons-group-label"
+        defaultValue="female"
+        name="radio-buttons-group"
+        value={newapi}
+        onChange={e => setnewApi(e.target.value)}
+      >
+        <FormControlLabel value1={user?.apikey} control={<Radio />} label={user?.apikey} />
+      </RadioGroup>
+    </FormControl>
                                   <Button
                                       variant="contained"
                                       color="primary"
