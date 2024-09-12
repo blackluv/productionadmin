@@ -227,7 +227,7 @@ export default function PermanentDrawerLeft() {
 
   const handleSubmit1 = async e => {
     e.preventDefault();
-    let user = setfee(shopname1)
+    let user = await setfee(shopname1)
     console.log(user, 'user')
     //props.history.push("/");
   }
