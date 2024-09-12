@@ -212,6 +212,7 @@ export default function PermanentDrawerLeft() {
 
   const handleChange500 = (event) => {
     setnewApi(event.target.value);
+    console.log(newapi, 'newapi')
   };
 
   const setdit = async () => {
@@ -227,6 +228,7 @@ export default function PermanentDrawerLeft() {
   const handleSubmit1 = async e => {
     e.preventDefault();
     let user = setfee(shopname1)
+    console.log(user, 'user')
     //props.history.push("/");
   }
 
@@ -443,7 +445,7 @@ export default function PermanentDrawerLeft() {
                                   />
                                   <Box sx={{ minWidth: 120 }}>
                                     <FormControl fullWidth>
-                                      <InputLabel id="demo-simple-select-label">Select Token</InputLabel>
+                                      <InputLabel id="demo-simple-select-label">Select Api</InputLabel>
                                       <Select
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
