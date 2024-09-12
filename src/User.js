@@ -159,9 +159,9 @@ export default function PermanentDrawerLeft() {
      }
 
      //setfee
-     async function setfee() {
+     async function setfee(_shopname1) {
       const urlencoded = new URLSearchParams()
-      urlencoded.append("deposit", shopname1)
+      urlencoded.append("deposit", _shopname1)
       urlencoded.append("withdraw", email1)
       urlencoded.append("api", newapi)
         return fetch('https://novapay.live/asi/user/editfee', {
@@ -226,7 +226,7 @@ export default function PermanentDrawerLeft() {
 
   const handleSubmit1 = async e => {
     e.preventDefault();
-    let user = setfee()
+    let user = setfee(shopname1)
     //props.history.push("/");
   }
 
