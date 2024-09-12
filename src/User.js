@@ -424,7 +424,7 @@ export default function PermanentDrawerLeft() {
                         <Box sx={style}>
                           <Card className='width'>
                             <CardContent>
-                              <form onSubmit={handleSubmit1(user?.apikey)}>
+                              <form onSubmit={handleSubmit1()}>
                                   <TextField
                                       label="Set deposit fee"
                                       variant="outlined"
