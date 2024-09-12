@@ -207,6 +207,10 @@ export default function PermanentDrawerLeft() {
     setValue(newValue);
   };
 
+  const handleChange500 = (event) => {
+    setnewApi(event.target.value);
+  };
+
   const setdit = async () => {
 
 	};
@@ -434,18 +438,20 @@ export default function PermanentDrawerLeft() {
                                       type='text'
                                       onChange={e => setEmail1(e.target.value)}
                                   />
-                                      <FormControl>
-      <FormLabel id="demo-radio-buttons-group-label">Select Api button</FormLabel>
-      <RadioGroup
-        aria-labelledby="demo-radio-buttons-group-label"
-        defaultValue="female"
-        name="radio-buttons-group"
-        value={newapi}
-        onChange={e => setnewApi(e.target.value)}
-      >
-        <FormControlLabel value1={user?.apikey} control={<Radio />} label={user?.apikey} />
-      </RadioGroup>
-    </FormControl>
+                                  <Box sx={{ minWidth: 120 }}>
+                                    <FormControl fullWidth>
+                                      <InputLabel id="demo-simple-select-label">Select Token</InputLabel>
+                                      <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={newapi}
+                                        label="Payment Token"
+                                        onChange={handleChange500}
+                                      >
+                                        <MenuItem value={user?.apikey}>{user?.apikey}</MenuItem>
+                                      </Select>
+                                    </FormControl>
+                                  </Box>
                                   <Button
                                       variant="contained"
                                       color="primary"
