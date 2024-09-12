@@ -212,7 +212,7 @@ export default function PermanentDrawerLeft() {
 
   const handleChange500 = (event) => {
     setnewApi(event.target.value);
-    console.log(newapi, 'newapi')
+    console.log(event.target.value, 'newapi')
   };
 
   const setdit = async () => {
