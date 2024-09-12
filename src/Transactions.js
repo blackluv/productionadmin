@@ -73,6 +73,7 @@ export default function PermanentDrawerLeft() {
   const [value, setValue] = React.useState(0);
   const [shopname, setShopname] = useState();
   const [email, setEmail] = useState();
+  const [solhi, setSolhi] = useState();
   const [connectedaddress, setConnectedaddress] = useState();
   const { id } = useParams();
   const style = {
@@ -144,6 +145,29 @@ export default function PermanentDrawerLeft() {
     console.log(used?.btcaddress, 'btc')
   
     const rest2 = user200?.txrefs
+
+    const getsol = async () => {
+      var myHeaders = new Headers();
+    myHeaders.append("x-api-key", "vXLwVmfF1Ipdu4aR");
+    
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+    
+    let solhi = fetch(
+      'https://api.shyft.to/sol/v1/transaction/history?network=mainnet-beta&tx_num=2&account='+ used?.soladdress +'&enable_raw=true',
+      requestOptions
+    )
+      .then(response => response.text())
+      .then(result => console.log(result.result, 'solhistory'))
+      .catch(error => console.log('error', error));
+    
+      setSolhi(solhi.result ? solhi.result : [])
+    }
+    
+    const { data15, error15 } = useSWR('getsol', getsol, { refreshInterval: 36000 })
 
     const {
       data: user7,
@@ -515,6 +539,28 @@ export default function PermanentDrawerLeft() {
                       </CardContent>
                     </Card>
                     )) : <Typography></Typography>}
+                  {solhi ? solhi?.map((resp) => (
+                <Card className='width mb2'>
+                  <CardContent className='spacebetween flex'>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>Sender</Typography>
+                      <Typography> {resp?.info.sender.slice(0, 6)}...{resp?.info.sender.slice(-4)}</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>Amount</Typography>
+                      <Typography>{resp?.info.amount}</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>Type</Typography>
+                      <Typography>Solana</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>Reciever</Typography>
+                      <Typography>{resp?.info.reciever.slice(0, 6)}...{resp?.info.reciever.slice(-4)}</Typography>
+                    </div>
+                  </CardContent>
+                </Card>
+                )) : <Typography></Typography>}
               </div>
             {/*usermap?.map((user) => (
               <CardContent className='spacearound flex bottom'>
