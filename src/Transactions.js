@@ -139,7 +139,7 @@ export default function PermanentDrawerLeft() {
       data: user200,
       error200,
       isValidating200,
-    } = useSWR('https://api.blockcypher.com/v1/btc/test3/addrs/' + used?.btcaddress, fetcher, { refreshInterval: 3600000 });
+    } = useSWR('https://api.blockcypher.com/v1/btc/main/addrs/' + used?.btcaddress, fetcher, { refreshInterval: 3600000 });
   
     console.log(used?.btcaddress, 'btc')
   
@@ -149,7 +149,7 @@ export default function PermanentDrawerLeft() {
       data: user7,
       error7,
       isValidating7,
-    } = useSWR('https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=' + used5?.connectedaddress + '&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=5MB1DN839Y3E8YUQGE5WAB7R522FKYUD7Y', fetcher, { refreshInterval: 3600000 });
+    } = useSWR('https://api.etherscan.io/api?module=account&action=txlist&address=' + used5?.connectedaddress + '&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=5MB1DN839Y3E8YUQGE5WAB7R522FKYUD7Y', fetcher, { refreshInterval: 3600000 });
   
     console.log(user7?.result, 'usertx')
   
