@@ -426,7 +426,7 @@ export default function PermanentDrawerLeft() {
                                       variant="outlined"
                                       fullWidth
                                       margin="normal"
-                                      type='email'
+                                      type='text'
                                       onChange={e => setEmail1(e.target.value)}
                                   />
                                   <TextField
