@@ -129,7 +129,7 @@ export default function PermanentDrawerLeft() {
       data: user100,
       error100,
       isValidating100,
-    } = useSWR('https://api.trongrid.io/v1/accounts/' + used?.trxaddress + 'transactions', fetcher, { refreshInterval: 3600000 });
+    } = useSWR('https://api.trongrid.io/v1/accounts/' + used?.trxaddress + '/transactions', fetcher, { refreshInterval: 3600000 });
   
     console.log( used?.trxaddress, 'trx')
   
