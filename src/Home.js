@@ -339,10 +339,20 @@ export default function PermanentDrawerLeft() {
                 <Card className='width mb2'>
                   <CardContent className='spacebetween flex'>
                     <div className='justcenter flex aligncenter column'>
-                      <Typography>USDT</Typography>
+                      <Typography>USDT-ERC20</Typography>
                     </div>
                     <div className='justcenter flex aligncenter column'>
                       <Typography>{used?.usdtbalance ? used?.usdtbalance : 0}</Typography>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className='width mb2'>
+                  <CardContent className='spacebetween flex'>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>USDT-TRC20</Typography>
+                    </div>
+                    <div className='justcenter flex aligncenter column'>
+                      <Typography>{used?.usdttrxbalance ? used?.usdttrxbalance : 0}</Typography>
                     </div>
                   </CardContent>
                 </Card>
