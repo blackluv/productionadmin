@@ -338,7 +338,7 @@ export default function PermanentDrawerLeft() {
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
-                      <Typography>{user?.amount * ((user?.depositfee + user?.withdrawfee) / 100)}</Typography>
+                      <Typography>{user?.amount * (20 / 100)}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
