@@ -332,7 +332,7 @@ export default function PermanentDrawerLeft() {
               </Link>
             </ListItem>
         </List>
-        <Button variant='contained' onClick={Logout}>Logout</Button>
+        {/*<Button variant='contained' onClick={Logout}>Logout</Button>*/}
       </Drawer>
       <Box
         component="main"
