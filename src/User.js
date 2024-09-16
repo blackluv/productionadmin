@@ -204,6 +204,14 @@ export default function PermanentDrawerLeft() {
       )
      }
 
+     async function Logout() {
+        return fetch('https://novapay.live/asi/logout', {
+          method: 'GET',
+        })
+          .then(data => data.json()
+        )
+       }
+
   const hasaccount = false;
 
   const handleChange = (event, newValue) => {
@@ -324,6 +332,7 @@ export default function PermanentDrawerLeft() {
               </Link>
             </ListItem>
         </List>
+        <Button variant='contained' onClick={Logout}>Logout</Button>
       </Drawer>
       <Box
         component="main"
