@@ -104,7 +104,7 @@ export default function PermanentDrawerLeft() {
     urlencoded.append("shop", shop)
     urlencoded.append("email", email)
     urlencoded.append("connectedaddress", connectedaddress)
-      return fetch('https://novapay.live/asi/user/create', {
+      return fetch('https://novapay.live/api/create/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
