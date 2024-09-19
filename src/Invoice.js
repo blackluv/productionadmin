@@ -111,6 +111,7 @@ export default function PermanentDrawerLeft() {
   console.log(getusers, 'countries')
   const usermap = getusers?.data
 
+
   //getuser 
   async function getuser(id) {
     return usermap[id]
@@ -338,7 +339,7 @@ export default function PermanentDrawerLeft() {
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
-                      <Typography>{user?.amount * Number(user?.depositfee ? user?.depositfee : 0) / 100}</Typography>
+                      <Typography>{user?.amount * Number(user?.adminshare ? user?.adminshare : 0) / 100}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
