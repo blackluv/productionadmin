@@ -492,7 +492,7 @@ export default function PermanentDrawerLeft() {
                   </CardContent>
                 </Card>
                 <Typography>Merchant Api</Typography>
-                <Typography className='mb2'>{used5.apikey}</Typography>
+                <Typography className='mb2'>{used5?.apikey}</Typography>
                 <Typography className='mb2'>Merchant Wallet Transactions</Typography>
               <div className='spacearound flex mt2 bottom column'>
                   {/*rest ? rest?.map((rest) => (
