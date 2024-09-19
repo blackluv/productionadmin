@@ -110,24 +110,19 @@ export default function PermanentDrawerLeft() {
   }
 
   const connectWallet = async () => {
-		try {
-			const { ethereum } = window;
-
-			if (!ethereum) {
-				alert("Get MetaMask -> https://metamask.io/");
-				return;
-			}
-
-			// Fancy method to request access to account.
-			const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-		
-			// Boom! This should print out public address once we authorize Metamask.
-			console.log("Connected", accounts[0]);
-			setCurrentAccount(accounts[0]);
-		} catch (error) {
-			console.log(error)
-		}
 	};
+
+  async function logout() {
+    return fetch('https://novapay.live/asi/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: urlencoded
+    })
+      .then(data => data.json()
+    )
+   }
 
   const checkaccount = async () => {} 
   useEffect(() => {
@@ -221,6 +216,7 @@ export default function PermanentDrawerLeft() {
               </Link>
             </ListItem>
         </List>
+        <Button className='lit4 justcenter flex' variant="contained" onClick={logout}>Logout</Button>
       </Drawer>
       <Box
         component="main"

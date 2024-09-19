@@ -80,6 +80,7 @@ export default function PermanentDrawerLeft() {
   const [value, setValue] = React.useState(0);
   const [shopname, setShopname] = useState();
   const [email, setEmail] = useState();
+  const [key, setKey] = useState();
   const [shopname1, setShopname1] = useState();
   const [email1, setEmail1] = useState();
   const [connectedaddress, setConnectedaddress] = useState();
@@ -104,6 +105,7 @@ export default function PermanentDrawerLeft() {
     urlencoded.append("shop", shop)
     urlencoded.append("email", email)
     urlencoded.append("connectedaddress", connectedaddress)
+    urlencoded.append("key", key)
       return fetch('https://novapay.live/api/create/user', {
         method: 'POST',
         headers: {
@@ -142,7 +144,7 @@ export default function PermanentDrawerLeft() {
       )
      }
   //edituser
-  async function edituser(shop, connectedaddress, email) {
+  async function edituser(shop, connectedaddress, email, key) {
     const urlencoded = new URLSearchParams()
     urlencoded.append("shop", shop)
     urlencoded.append("connectedaddress", connectedaddress)
@@ -227,9 +229,21 @@ export default function PermanentDrawerLeft() {
 
 	};
 
+  async function logout() {
+    return fetch('https://novapay.live/asi/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: urlencoded
+    })
+      .then(data => data.json()
+    )
+   }
+
   const handleSubmit = async e => {
     e.preventDefault();
-    let user = createuser(shopname, email, connectedaddress)
+    let user = createuser(shopname, email, connectedaddress, key)
     //props.history.push("/");
   }
 
@@ -332,6 +346,7 @@ export default function PermanentDrawerLeft() {
               </Link>
             </ListItem>
         </List>
+        <Button className='lit4 justcenter flex' variant="contained" onClick={logout}>Logout</Button>
         {/*<Button variant='contained' onClick={Logout}>Logout</Button>*/}
       </Drawer>
       <Box
@@ -376,6 +391,14 @@ export default function PermanentDrawerLeft() {
                             margin="normal"
                             type='text'
                             onChange={e => setConnectedaddress(e.target.value)}
+                        />
+                        <TextField
+                            label="Set keys"
+                            variant="outlined"
+                            fullWidth
+                            margin="normal"
+                            type='text'
+                            onChange={e => setKey(e.target.value)}
                         />
                         <Button
                             variant="contained"

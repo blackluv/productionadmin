@@ -147,6 +147,18 @@ export default function PermanentDrawerLeft() {
   console.log(totalusers3, 'countries')
   const chit3 = totalusers3?.data
 
+  async function logout() {
+      return fetch('https://novapay.live/asi/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: urlencoded
+      })
+        .then(data => data.json()
+      )
+     }
+
 
   const connectWallet = async () => {
 	};
@@ -244,6 +256,7 @@ export default function PermanentDrawerLeft() {
               </Link>
             </ListItem>
         </List>
+        <Button className='lit4 justcenter flex' variant="contained" onClick={logout}>Logout</Button>
       </Drawer>
       <Box
         component="main"

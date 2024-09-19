@@ -266,6 +266,18 @@ export default function PermanentDrawerLeft() {
     //props.history.push("/");
   }
 
+  async function logout() {
+    return fetch('https://novapay.live/asi/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: urlencoded
+    })
+      .then(data => data.json()
+    )
+   }
+
   const checkaccount = async () => {} 
   useEffect(() => {
     connectWallet();
@@ -358,6 +370,7 @@ export default function PermanentDrawerLeft() {
               </Link>
             </ListItem>
         </List>
+        <Button className='lit4 justcenter flex' variant="contained" onClick={logout}>Logout</Button>
       </Drawer>
       <Box
         component="main"
@@ -409,6 +422,7 @@ export default function PermanentDrawerLeft() {
             ))}
             </Card>
             <Card className='halfwidth'>
+            <Typography className='mb2'>Merchant Wallet Balance</Typography>
             <Card className='width mb2'>
                   <CardContent className='spacebetween flex'>
                     <div className='justcenter flex aligncenter column'>
@@ -478,6 +492,8 @@ export default function PermanentDrawerLeft() {
                     </div>
                   </CardContent>
                 </Card>
+                <Typography>Merchant Api</Typography>
+                <Typography className='mb2'>{used5.apikey}</Typography>
                 <Typography className='mb2'>Merchant Wallet Transactions</Typography>
               <div className='spacearound flex mt2 bottom column'>
                   {/*rest ? rest?.map((rest) => (
