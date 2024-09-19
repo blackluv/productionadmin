@@ -187,7 +187,7 @@ export default function PermanentDrawerLeft() {
 
   async function logout() {
     return fetch('https://novapay.live/asi/logout', {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
