@@ -235,7 +235,6 @@ export default function PermanentDrawerLeft() {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      body: urlencoded
     })
       .then(data => data.json()
     )
