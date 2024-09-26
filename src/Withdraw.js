@@ -402,7 +402,7 @@ const requestmap = user10?.data
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>payouts</Typography>*/}
-                      <Typography>{request.paidto}</Typography>
+                      <Typography>{request.paidto.slice(0, 6)}...{request.paidto.slice(-4)}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>payouts</Typography>*/}
