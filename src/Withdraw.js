@@ -381,7 +381,7 @@ const requestmap = user10?.data
                   <CardContent className='spacearound flex bottom'>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Shopname</Typography>*/}
-                      <Typography>{request.paymenttx}</Typography>
+                      <Typography>{request.paymenttx.slice(0, 6)}...{request.paymenttx.slice(-4)}</Typography>
                   </div>
                   <Divider />
                   <div className='justcenter flex aligncenter column width20 mb2'>
@@ -390,7 +390,7 @@ const requestmap = user10?.data
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
-                      <Typography>{request.merchantaddress}</Typography>
+                      <Typography>{request.merchantaddress.slice(0, 6)}...{request.merchantaddress.slice(-4)}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
