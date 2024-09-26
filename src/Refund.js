@@ -27,6 +27,7 @@ import './App.css';
 import { CardHeader } from '@mui/material';
 import { Link } from 'react-router-dom';
 import useSWR from 'swr';
+import { PaymentTwoTone } from '@mui/icons-material';
 
 const drawerWidth = 240;
 
@@ -111,6 +112,14 @@ export default function PermanentDrawerLeft() {
   console.log(getusers, 'countries')
   const usermap = getusers?.data
 
+  const {
+    data: user10,
+    error10,
+    isValidating10,
+  } = useSWR('https://novapay.live/asi/get/allrefunds', fetcher, { refreshInterval: 36000000 });
+  console.log(user10?.data, 'countries4')
+
+const requestmap = user10?.data
 
   //getuser 
   async function getuser(id) {
@@ -185,11 +194,39 @@ export default function PermanentDrawerLeft() {
   const connectWallet = async () => {
 	};
 
-  async function logout() {
-    return fetch('https://novapay.live/asi/logout', {
-      method: 'POST',
-    })
-   }
+  async function deny(hash) {
+    const urlencoded = new URLSearchParams()
+    urlencoded.append("txid", hash)
+      return fetch('https://novapay.live/asi/payout/deny', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: urlencoded
+      })
+        .then(data => data.json()
+      )
+     }
+
+     async function pay(hash) {
+      const urlencoded = new URLSearchParams()
+      urlencoded.append("txid", hash)
+        return fetch('https://novapay.live/asi/refund/pay', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: urlencoded
+        })
+          .then(data => data.json()
+        )
+       }
+
+       async function logout() {
+        return fetch('https://novapay.live/asi/logout', {
+          method: 'POST',
+        })
+       }
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -310,7 +347,7 @@ export default function PermanentDrawerLeft() {
         {/*<Toolbar />*/}
         <div class="">
             <div className='mb5 flex width spacebetween'>
-            <Typography variant='h4' className=''>Deposits</Typography>
+            <Typography variant='h4' className=''>Refunds</Typography>
             </div>
         <Card className='width'>
               <div className='spacearound flex mt2 bottom'>
@@ -322,54 +359,52 @@ export default function PermanentDrawerLeft() {
                       <Typography>Shop</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>Time</Typography>
+                      <Typography>Wallet</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>amount</Typography>
+                      <Typography>Amount</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>admin fee</Typography>
+                      <Typography>Token</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>Paid in</Typography>
+                      <Typography>status</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
-                      <Typography>Status/isconfirmed</Typography>
+                      <Typography>action</Typography>
                   </div>
                   </div>
-            {usermap?.map((user) => (
-              <CardContent className='spacearound flex bottom'>
+                  {requestmap?.map((request) => (
+                  <CardContent className='spacearound flex bottom'>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Shopname</Typography>*/}
-                      <Typography>{user?.transactionhash.slice(0, 6)}...{user?.transactionhash.slice(-4)}</Typography>
+                      <Typography>{request.transactionhash}</Typography>
                   </div>
                   <Divider />
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Email</Typography>*/}
-                      <Typography>{user?.shop}</Typography>
+                      <Typography>{request.shop}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
-                      <Typography>{new Date(user?.date).toDateString()}</Typography>
+                      <Typography>{request.sender}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
-                      <Typography>{user?.amount}</Typography>
-                  </div>
-                  <div className='justcenter flex aligncenter column width20 mb2'>
-                      {/*<Typography>Deposits</Typography>*/}
-                      <Typography>{user?.amount * Number(user?.adminshare ? user?.adminshare : 0) / 100}</Typography>
-                  </div>
-                  <div className='justcenter flex aligncenter column width20 mb2'>
-                      {/*<Typography>Deposits</Typography>*/}
-                      <Typography>{user?.paidin}</Typography>
+                      <Typography>{request.walletamount}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>payouts</Typography>*/}
-                      <Typography>{user?.isconfirmed == true ? "true" : "false"}</Typography>
+                      <Typography>{request.paidin}</Typography>
                   </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>payouts</Typography>*/}
+                      <Typography>{request?.isapproved == true ? "true" : "false"}</Typography>
+                  </div>
+                  <Button  className='width20' onClick={() =>deny(request?.transactionhash)}>Deny</Button>
+                  <Button  className='width20' onClick={() => pay(request?.transactionhash)}>Pay</Button>
               </CardContent>
-            ))}
+               ))}
             </Card>
         </div>
         </Box>

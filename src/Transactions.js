@@ -270,8 +270,6 @@ export default function PermanentDrawerLeft() {
     return fetch('https://novapay.live/asi/logout', {
       method: 'POST',
     })
-      .then(data => data.json()
-    )
    }
 
   const checkaccount = async () => {} 
@@ -362,6 +360,18 @@ export default function PermanentDrawerLeft() {
                   <InboxIcon /> 
                 </ListItemIcon>
                 <ListItemText primary="Payouts" />
+              </ListItemButton>
+              </Link>
+            </ListItem>
+        </List>
+        <List>
+            <ListItem key="Refunds" disablePadding>
+              <Link to= "/refund" className='ti'>
+              <ListItemButton>
+                <ListItemIcon>
+                  <InboxIcon /> 
+                </ListItemIcon>
+                <ListItemText primary="Refunds" />
               </ListItemButton>
               </Link>
             </ListItem>

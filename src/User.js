@@ -233,13 +233,11 @@ export default function PermanentDrawerLeft() {
     return fetch('https://novapay.live/asi/logout', {
       method: 'POST',
     })
-      .then(data => data.json()
-    )
    }
 
   const handleSubmit = async e => {
     e.preventDefault();
-    let user = createuser(shopname, email, connectedaddress, key)
+    let user = await createuser(shopname, email, connectedaddress, key)
     //props.history.push("/");
   }
 
@@ -338,6 +336,18 @@ export default function PermanentDrawerLeft() {
                   <InboxIcon /> 
                 </ListItemIcon>
                 <ListItemText primary="Payouts" />
+              </ListItemButton>
+              </Link>
+            </ListItem>
+        </List>
+        <List>
+            <ListItem key="Refunds" disablePadding>
+              <Link to= "/refund" className='ti'>
+              <ListItemButton>
+                <ListItemIcon>
+                  <InboxIcon /> 
+                </ListItemIcon>
+                <ListItemText primary="Refunds" />
               </ListItemButton>
               </Link>
             </ListItem>

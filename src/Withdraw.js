@@ -228,6 +228,12 @@ const requestmap = user10?.data
     //props.history.push("/");
   }
 
+  async function logout() {
+    return fetch('https://novapay.live/asi/logout', {
+      method: 'POST',
+    })
+   }
+
   const checkaccount = async () => {} 
   useEffect(() => {
     connectWallet();
@@ -320,6 +326,19 @@ const requestmap = user10?.data
               </Link>
             </ListItem>
         </List>
+        <List>
+            <ListItem key="Refunds" disablePadding>
+              <Link to= "/refund" className='ti'>
+              <ListItemButton>
+                <ListItemIcon>
+                  <InboxIcon /> 
+                </ListItemIcon>
+                <ListItemText primary="Refunds" />
+              </ListItemButton>
+              </Link>
+            </ListItem>
+        </List>
+        <Button className='lit4 justcenter flex' variant="contained" onClick={logout}>Logout</Button>
       </Drawer>
       <Box
         component="main"
@@ -349,6 +368,9 @@ const requestmap = user10?.data
                       <Typography>Token</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>Paid To</Typography>
+                  </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
                       <Typography>status</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
@@ -359,20 +381,20 @@ const requestmap = user10?.data
                   <CardContent className='spacearound flex bottom'>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Shopname</Typography>*/}
-                      <Typography>{request.transactionhash}</Typography>
+                      <Typography>{request.paymenttx}</Typography>
                   </div>
                   <Divider />
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Email</Typography>*/}
-                      <Typography>{request.shop}</Typography>
+                      <Typography>{request.shopname}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
-                      <Typography>{request.paytoaddress}</Typography>
+                      <Typography>{request.merchantaddress}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>Deposits</Typography>*/}
-                      <Typography>{request.amount}</Typography>
+                      <Typography>{request.useramount}</Typography>
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>payouts</Typography>*/}
@@ -380,10 +402,14 @@ const requestmap = user10?.data
                   </div>
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       {/*<Typography>payouts</Typography>*/}
-                      <Typography>{request?.isconfirmed == true ? "true" : "false"}</Typography>
+                      <Typography>{request.paidto}</Typography>
                   </div>
-                  <Button  className='width20' onClick={() =>deny(request?.transactionhash)}>Deny</Button>
-                  <Button  className='width20' onClick={() => pay(request?.transactionhash)}>Pay</Button>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      {/*<Typography>payouts</Typography>*/}
+                      <Typography>{request?.isapproved == true ? "true" : "false"}</Typography>
+                  </div>
+                  <Button  className='width20' onClick={() =>deny(request?.paymenttx)}>Deny</Button>
+                  <Button  className='width20' onClick={() => pay(request?.paymenttx)}>Pay</Button>
               </CardContent>
                ))}
             </Card>

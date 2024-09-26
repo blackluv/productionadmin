@@ -14,6 +14,7 @@ import Invoice from './Invoice'
 import Wallet from './Wallet'
 import Transaction from './Transactions'
 import Withdraw from './Withdraw'
+import Refund from './Refund'
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
             <Route path="/deposit" element={ <Invoice />} />
             <Route path="/admin" element={ <Wallet />} />
             <Route path="/payout" element={ <Withdraw />} />
+            <Route path="/refund" element={ <Refund />} />
             <Route path='/transaction/:id' element={<Transaction />} />
         </Routes>
     </div>
