@@ -534,7 +534,9 @@ export default function PermanentDrawerLeft() {
                                         label="Payment Token"
                                         onChange={handleChange500}
                                       >
-                                        <MenuItem value={user?.apikey}>{user?.apikey}</MenuItem>
+                                      {usermap?.map((user) => (
+                                        <MenuItem value={user?.apikey}>{user?.shop}</MenuItem>
+                                      ))}
                                       </Select>
                                     </FormControl>
                                   </Box>
