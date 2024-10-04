@@ -553,7 +553,7 @@ export default function PermanentDrawerLeft() {
                       </Modal>
                     <Link to={'/transaction/' + user?.apikey }><Button variant="contained" className='width5' >View</Button></Link>
                   </div>
-                  <div className='width10 spacebetween'>
+                  <div className='width10'>
                     <Button variant="contained" className='width5' onClick={handleOpen2}>Set Expiry</Button>
                     <Modal
                         open={open2}
@@ -583,7 +583,9 @@ export default function PermanentDrawerLeft() {
                                         label="Payment Token"
                                         onChange={handleChange500}
                                       >
-                                        <MenuItem value={user?.apikey}>{user?.apikey}</MenuItem>
+                                        {usermap?.map((user) => (
+                                        <MenuItem value={user?.apikey}>{user?.shop}</MenuItem>
+                                        ))}
                                       </Select>
                                     </FormControl>
                                   </Box>
