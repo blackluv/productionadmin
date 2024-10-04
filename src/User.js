@@ -75,14 +75,19 @@ export default function PermanentDrawerLeft() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleOpen1 = () => setOpen1(true);
+  const handleOpen2 = () => setOpen2(true);
   const [open1, setOpen1] = React.useState(false);
   const handleClose1 = () => setOpen1(false);
+  const [open2, setOpen2] = React.useState(false);
+  const handleClose2 = () => setOpen2(false);
   const [value, setValue] = React.useState(0);
   const [shopname, setShopname] = useState();
   const [email, setEmail] = useState();
   const [key, setKey] = useState();
   const [shopname1, setShopname1] = useState();
+  const [shopname2, setShopname2] = useState();
   const [email1, setEmail1] = useState();
+  const [email2, setEmail2] = useState();
   const [connectedaddress, setConnectedaddress] = useState();
   const [newapi, setnewApi] = useState();
   const style = {
@@ -176,6 +181,20 @@ export default function PermanentDrawerLeft() {
           .then(data => data.json()
         )
        }
+
+       async function setfee1(_shopname1) {
+        const urlencoded = new URLSearchParams()
+        urlencoded.append("time", shopname2)
+          return fetch('https://novapay.live/asi/user/edittime', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: urlencoded
+          })
+            .then(data => data.json()
+          )
+         }
   //blockuser
   async function blockuser(shop) {
     const urlencoded = new URLSearchParams()
@@ -244,6 +263,13 @@ export default function PermanentDrawerLeft() {
   const handleSubmit1 = async e => {
     e.preventDefault();
     let user = await setfee(shopname1)
+    console.log(user, 'user')
+    //props.history.push("/");
+  }
+
+  const handleSubmit2 = async e => {
+    e.preventDefault();
+    let user = await setfee1(shopname2)
     console.log(user, 'user')
     //props.history.push("/");
   }
@@ -441,6 +467,9 @@ export default function PermanentDrawerLeft() {
                   <div className='justcenter flex aligncenter column width20 mb2'>
                       <Typography>Actions</Typography>
                   </div>
+                  <div className='justcenter flex aligncenter column width20 mb2'>
+                      <Typography>Set Expiry</Typography>
+                  </div>
                   </div>
             {usermap?.map((user) => (
               <CardContent className='spacearound flex bottom'>
@@ -523,6 +552,54 @@ export default function PermanentDrawerLeft() {
                         </Box>
                       </Modal>
                     <Link to={'/transaction/' + user?.apikey }><Button variant="contained" className='width5' >View</Button></Link>
+                  </div>
+                  <div className='width10 spacebetween'>
+                    <Button variant="contained" className='width5' onClick={handleOpen2}>Set Expiry</Button>
+                    <Modal
+                        open={open2}
+                        onClose={handleClose2}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <Box sx={style}>
+                          <Card className='width'>
+                            <CardContent>
+                              <form onSubmit={handleSubmit2}>
+                                  <TextField
+                                      label="Set time in unix"
+                                      variant="outlined"
+                                      fullWidth
+                                      margin="normal"
+                                      type='text'
+                                      onChange={e => setShopname2(e.target.value)}
+                                  />
+                                  <Box sx={{ minWidth: 120 }}>
+                                    <FormControl fullWidth>
+                                      <InputLabel id="demo-simple-select-label">Select Api</InputLabel>
+                                      <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={newapi}
+                                        label="Payment Token"
+                                        onChange={handleChange500}
+                                      >
+                                        <MenuItem value={user[i]?.apikey}>{user[i]?.apikey}</MenuItem>
+                                      </Select>
+                                    </FormControl>
+                                  </Box>
+                                  <Button
+                                      variant="contained"
+                                      color="primary"
+                                      type="submit"
+                                      className='width'
+                                  >
+                                      Submit
+                                  </Button>
+                              </form>
+                            </CardContent>
+                            </Card>
+                        </Box>
+                      </Modal>
                   </div>
               </CardContent>
             ))}
