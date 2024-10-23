@@ -166,7 +166,7 @@ async function enableuser(shop) {
     console.log(data, 'data')
 
     // Alert the response data
-    alert(JSON.stringify(data)); // Convert to string for better readability
+    alert(data); // Convert to string for better readability
     return data; // Optionally return the data for further use
   } catch (error) {
     alert('Error: ' + error.message);
@@ -190,7 +190,7 @@ async function disableuser(shop) {
     console.log(data, 'data')
 
     // Alert the response data
-    alert(JSON.stringify(data)); // Convert to string for better readability
+    alert(data); // Convert to string for better readability
     return data; // Optionally return the data for further use
   } catch (error) {
     alert('Error: ' + error.message);
