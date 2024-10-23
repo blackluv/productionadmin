@@ -163,6 +163,7 @@ async function enableuser(shop) {
     });
 
     const data = await response.json();
+    console.log(data, 'data')
 
     // Alert the response data
     alert(JSON.stringify(data)); // Convert to string for better readability
@@ -186,6 +187,7 @@ async function disableuser(shop) {
     });
 
     const data = await response.json();
+    console.log(data, 'data')
 
     // Alert the response data
     alert(JSON.stringify(data)); // Convert to string for better readability
