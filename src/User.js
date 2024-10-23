@@ -148,6 +148,52 @@ export default function PermanentDrawerLeft() {
         .then(data => data.json()
       )
      }
+
+async function enableuser(shop) {
+  const urlencoded = new URLSearchParams();
+  urlencoded.append("api", shop);
+
+  try {
+    const response = await fetch('https://novapay.live/api/enablewhitelabel', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: urlencoded
+    });
+
+    const data = await response.json();
+
+    // Alert the response data
+    alert(JSON.stringify(data)); // Convert to string for better readability
+    return data; // Optionally return the data for further use
+  } catch (error) {
+    alert('Error: ' + error.message);
+  }
+}
+
+async function disableuser(shop) {
+  const urlencoded = new URLSearchParams();
+  urlencoded.append("api", shop);
+
+  try {
+    const response = await fetch('https://novapay.live/api/disablewhitelabel', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: urlencoded
+    });
+
+    const data = await response.json();
+
+    // Alert the response data
+    alert(JSON.stringify(data)); // Convert to string for better readability
+    return data; // Optionally return the data for further use
+  } catch (error) {
+    alert('Error: ' + error.message);
+  }
+}
   //edituser
   async function edituser(shop, connectedaddress, email, key) {
     const urlencoded = new URLSearchParams()
@@ -604,6 +650,8 @@ export default function PermanentDrawerLeft() {
                             </Card>
                         </Box>
                       </Modal>
+                      <Button variant="contained" className='width5' onClick={() => enableuser(user?.apikey)}>Enable Label</Button>
+                      <Button variant="contained" className='width5' onClick={() => disableuser(user?.apikey)}>Disable Label</Button>
                   </div>
               </CardContent>
             ))}
