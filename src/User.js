@@ -162,7 +162,7 @@ async function enableuser(shop) {
       body: urlencoded
     });
 
-    const data = await response;
+    const data = await response.text();
     console.log(data, 'data')
 
     // Alert the response data
@@ -186,7 +186,7 @@ async function disableuser(shop) {
       body: urlencoded
     });
 
-    const data = await response;
+    const data = await response.text();
     console.log(data, 'data')
 
     // Alert the response data
